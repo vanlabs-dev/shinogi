@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>shinogi</title>
+  <meta name="description" content="A lean read on Bittensor subnets. Public summary of Atlas-observed network state.">
+  <style>
+    :root {
+      --bg: #0e1114;
+      --fg: #e6e8eb;
+      --muted: #8b939c;
+      --line: #2a3036;
+      --accent: #c4b48a;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--bg); color: var(--fg); }
+    body {
+      min-height: 100vh;
+      font: 15px/1.45 ui-monospace, "Cascadia Mono", "SF Mono", Menlo, monospace;
+      padding: 28px 22px 48px;
+    }
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 12px 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      margin: 0;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      font-weight: 700;
+    }
+    .tag { color: var(--muted); font-size: 12px; }
+    .asof { color: var(--muted); font-size: 12px; margin-left: auto; }
+    main { max-width: 52rem; padding-top: 28px; }
+    p { margin: 0 0 1em; color: var(--fg); }
+    .status {
+      color: var(--accent);
+      margin-bottom: 1.25em;
+    }
+    footer {
+      margin-top: 48px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SHINOGI</h1>
+    <div class="tag">A lean read on Bittensor subnets</div>
+    <div class="asof">as of: awaiting first Atlas publish</div>
+  </header>
+  <main>
+    <p class="status">Placeholder page. Repo is on GitHub. Point Cloudflare Pages at this repo.</p>
+    <p>This URL will carry a single read of the Bittensor network, composed from Atlas stores on the operator device and published as static HTML. No live chain calls are made from this site.</p>
+    <p>Until Atlas writes the first edition, this page is the proof that the domain, the repo, and Pages agree.</p>
+  </main>
+  <footer>shinogi.dev · public read-only · data from Atlas</footer>
+</body>
+</html>
