@@ -9,9 +9,8 @@ Operator: `vaNlabs` / GitHub `vanlabs-dev`. Personal, not work.
 
 ## Standing (2026-09-01)
 
-Placeholder `index.html` is on `main`. Cloudflare Pages is deployed.
-`shinogi.dev` nameservers are Cloudflare. DNS has AAAA only; no A record,
-so IPv4 clients do not resolve. `www` has no records.
+Placeholder `index.html` is on `main`. Cloudflare Pages serves
+`https://shinogi.dev` (HTTP 200). `www` has no records; use the apex.
 
 Atlas has not published a real edition yet.
 
@@ -61,7 +60,5 @@ not copy the LAN boards.
 
 ## Next
 
-1. DNS: Pages → Custom domains → `shinogi.dev`, or a flattened CNAME
-   `@` → `<project>.pages.dev`, so both A and AAAA exist.
-2. Atlas: render on the fleet unit, push this repo when the hash changes
-   (`ExecStartPost=-…`). Run that where the stores are, not from here.
+Atlas: render on the fleet unit, push this repo when the hash changes
+(`ExecStartPost=-…`). Run that where the stores are, not from here.
