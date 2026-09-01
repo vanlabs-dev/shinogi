@@ -1,108 +1,67 @@
 # shinogi
 
-A lean read on Bittensor subnets. Public page at [shinogi.dev](https://shinogi.dev).
-Read this before changing anything.
+A lean read on Bittensor subnets. Public page: https://shinogi.dev
 
-## What this is
-
-One public URL. One page. Summarized subnet and network state, composed
-from Atlas stores and published as static HTML.
-
-Atlas (`~/src/github/vanlabs-dev/atlas`) is the worker: fleet clones,
-livedata, gate poll, mining triage, briefing composers. This repo is the
-published dump. It does not fetch chain data, hold keys, or run a backend.
+Atlas (`~/src/github/vanlabs-dev/atlas`) is the worker. This repo is the
+static dump it publishes. No chain calls, no keys, no backend from here.
 
 Operator: `vaNlabs` / GitHub `vanlabs-dev`. Personal, not work.
 
 ## Standing (2026-09-01)
 
-Placeholder `index.html` and `404.html` are in this repo on `main`.
-`404.html` exists so Pages does not treat the site as an SPA.
+Placeholder `index.html` is on `main`. Cloudflare Pages is deployed.
+`shinogi.dev` nameservers are Cloudflare. DNS has AAAA only; no A record,
+so IPv4 clients do not resolve. `www` has no records.
 
-GitHub: `vanlabs-dev/shinogi` (public). Description matches the tagline.
-Zone `shinogi.dev` is registered on Cloudflare. Pages may still need to
-be pointed at this repo (same settings as below). Do not claim the domain
-is live until that attach is confirmed.
+Atlas has not published a real edition yet.
 
-Atlas does not yet render or push a real edition. The page still says
-`as of: awaiting first Atlas publish`.
-
-## How it goes live
+## Publish
 
 ```
-Atlas Pi (LAN only, no inbound)
-  6h fleet timer
-    render page from stores (not built yet)
-    git push this repo
-      → Cloudflare Pages (no build command, output /)
-      → https://shinogi.dev
+Atlas Pi (LAN only)
+  6h fleet timer → render from stores → git push this repo
+    → Cloudflare Pages (no build, output /) → shinogi.dev
 ```
 
-Publish cadence is the 6h fleet pass, not hourly. Cloudflare Pages Free
-allows 500 builds/month. Hourly would exceed that. The HTML still reads
-the latest hourly `panel_snapshot` at render time; the page is then at
-most six hours old.
+Cadence is 6h, not hourly (Pages Free: 500 builds/month). The page must
+show `as of <time> · block <n>`. A failed push leaves the last deploy live.
 
-If a push fails, the previous deployment stays live. The page must show
-`as of <time> · block <n>` so a stuck publish is visible.
-
-Do not tunnel the Pi. Do not move nameservers off Cloudflare.
-
-## This repo
+## Repo
 
 | Path | Role |
 |---|---|
-| `index.html` | The read. Self-contained. No external assets. |
-| `404.html` | Unknown paths. Do not delete (SPA fallback). |
-| `AGENTS.md` | This file. Session briefing. |
+| `index.html` | The page. Self-contained. |
+| `404.html` | Required so Pages is not an SPA. |
+| `AGENTS.md` | This file. |
 
-Remote: `git@github.com:vanlabs-dev/shinogi.git` (public).
-Branch: `main`. Git author: `vanlabs-dev <vanlabs@pm.me>`.
+Remote: `git@github.com:vanlabs-dev/shinogi.git`. Branch: `main`.
+Author: `vanlabs-dev <vanlabs@pm.me>`.
+Pages: Framework None, empty build, output `/`.
 
-Pages settings: Framework None, build command empty, output `/`.
+## v1 page
 
-## Page content (when Atlas writes it)
+One view. No nav, no accounts, no articles.
 
-Single view, no nav, no accounts, no article factory.
+Network, subnet movers, mining head, attention head (~10), code/narrative.
+Gaps named, never estimated.
 
-- Network: spec, emission bar, rank, above-bar count, TAO/USD, staked
-- Subnets: price/share movers, dereg, contested, hovering count
-- Mining: ranked/cut counts, head, entries/exits
-- Attention: head tier only (~10 rows)
-- Code / narrative: 7d pushes, high econ-code verdicts, re-points, model-id adoptions
-- Gaps named. Never estimated.
-
-Keep off the page: wallets, keys, Telegram, Pi address, TaoStats quota,
+Off the page: wallets, keys, Telegram, Pi address, TaoStats quota,
 exploit paths, `mining.budget_band`.
 
-Reuse Atlas briefing section composers (`telegram/atlas_briefing.py`).
-They already read stores read-only and omit or mark stale. Do not copy
-the LAN boards wholesale; summarize.
+Compose from Atlas briefing readers (`telegram/atlas_briefing.py`). Do
+not copy the LAN boards.
 
 ## Rules
 
-- Lean. If a piece does not read an Atlas store or write `index.html`,
-  it is not v1.
-- Atlas stays the kernel. Do not rebuild ingest on this host.
-- No Next.js, no Worker, no Pages Function, no Supabase, no Stripe.
-- No extra Cloudflare Cache Rule on the custom domain (can serve stale
-  after a deploy).
-- IntoTAO (`~/src/github/vanlabs-dev/intotao-references`) is reference
-  only. Do not reuse that code, brand, or ops plane.
-- No em dashes in anything we author.
+- If it does not read an Atlas store or write `index.html`, it is not v1.
+- Do not rebuild ingest here. No Next.js, Worker, Function, Supabase, Stripe.
+- No extra Cache Rule on the custom domain.
+- IntoTAO is reference only. Do not reuse that code.
+- No em dashes.
 
 ## Next
 
-1. Cloudflare Pages: connect `vanlabs-dev/shinogi`, empty build, output
-   `/`, custom domain `shinogi.dev`.
-2. Atlas change: compose HTML from stores on the fleet unit, copy into a
-   Pi clone of this repo, commit, push when the content hash changes.
-   Fail-isolated (`ExecStartPost=-…`), same pattern as the Telegram scan.
-
-Do not start the Atlas work from this repo. The composer has to run
-where the stores are.
-
-## Abandoned names
-
-`btorbis` / `btorbis.dev` and `btsitrep` / `btsitrep.dev` were dropped.
-The product is shinogi.
+1. DNS: Pages → Custom domains → `shinogi.dev`, or a flattened CNAME
+   `@` → `<project>.pages.dev`, so both A and AAAA exist.
+2. Atlas: render on the fleet unit, push this repo when the hash changes
+   (`ExecStartPost=-…`). Run that where the stores are, not from here.
