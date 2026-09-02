@@ -1,0 +1,33 @@
+schema: spec-driven
+
+context: |
+  shinogi is the public static dump for https://shinogi.dev.
+  Atlas (~/src/github/vanlabs-dev/atlas) is the worker. This repo
+  holds index.html and 404.html. No chain calls, keys, or backend here.
+  Cloudflare Pages: Framework None, empty build, output /. Cadence 6h.
+  v1 is one self-contained HTML view: public pulse. No nav, accounts,
+  or articles. Compose from Atlas briefing store facts, not LAN boards.
+  Off the page: wallets, keys, Telegram, Pi address, TaoStats quota,
+  exploit paths, mining.budget_band, atlas/operator section.
+  Gaps named, never estimated. No em dashes. IntoTAO is reference only.
+  Author: vanlabs-dev <vanlabs@pm.me>. Never add Co-Authored-By.
+
+rules:
+  proposal:
+    - Keep proposals under 500 words
+    - Always include a Non-goals section
+  specs:
+    - Requirements describe the published HTML contract, not Atlas internals
+  design:
+    - Renderer stays in Atlas. This repo only specifies the page and ships a first-edition shell
+  tasks:
+    - "Tasks in this repo are the contract HTML and living docs. Do not implement the Atlas renderer here."
+
+operations:
+  apply:
+    guidance:
+      - Do not add a backend, Worker, Function, or JS fetch
+      - Do not copy LAN board chrome
+  archive:
+    guidance:
+      - Summarize the archive outcome before finishing

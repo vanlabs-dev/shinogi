@@ -37,8 +37,21 @@
     .tag { color: var(--muted); font-size: 12px; }
     .asof { color: var(--muted); font-size: 12px; margin-left: auto; }
     main { max-width: 52rem; padding-top: 28px; }
-    p { margin: 0 0 1em; }
-    .status { color: var(--accent); }
+    section { margin: 0 0 2em; }
+    h2 {
+      margin: 0 0 0.55em;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+    }
+    h3 {
+      margin: 1.1em 0 0.45em;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    p { margin: 0 0 1em; color: var(--muted); }
     footer {
       margin-top: 48px;
       padding-top: 16px;
@@ -52,11 +65,32 @@
   <header>
     <h1>SHINOGI</h1>
     <div class="tag">A lean read on Bittensor subnets</div>
-    <div class="asof">as of: awaiting first Atlas publish</div>
+    <div class="asof">awaiting first Atlas publish</div>
   </header>
   <main>
-    <p class="status">Placeholder. Atlas has not published yet.</p>
-    <p>This page will be a single read of the Bittensor network, written from Atlas stores. This site does not call the chain.</p>
+    <section id="network">
+      <h2>Network</h2>
+      <p>Missing network vitals, runtime spec, and emission-gate bar. Awaiting first Atlas publish.</p>
+    </section>
+    <section id="movers">
+      <h2>Subnet movers</h2>
+      <p>Missing panel snapshots. Awaiting first Atlas publish.</p>
+    </section>
+    <section id="mining">
+      <h2>Mining</h2>
+      <p>Missing mining board head. Awaiting first Atlas publish.</p>
+    </section>
+    <section id="attention">
+      <h2>Attention</h2>
+      <p>Missing fleet attention facts. Awaiting first Atlas publish.</p>
+    </section>
+    <section id="code-narrative">
+      <h2>Code / narrative</h2>
+      <h3>Code</h3>
+      <p>Missing seven-day push count and incentive-code verdicts. Awaiting first Atlas publish.</p>
+      <h3>Narrative</h3>
+      <p>Missing model-identifier adoptions and cluster events. Awaiting first Atlas publish.</p>
+    </section>
   </main>
   <footer>shinogi.dev · public read-only · data from Atlas</footer>
 </body>
