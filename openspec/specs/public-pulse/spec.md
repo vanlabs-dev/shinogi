@@ -8,12 +8,20 @@ gaps and no operator-only material.
 
 ## Requirements
 
-### Requirement: One self-contained public view
+### Requirement: One page, and the data is baked into it
 
-The published site SHALL serve a single page at `/` as self-contained
-HTML (no external stylesheet, script, or font). The page SHALL have no
-navigation, accounts, or article list. The page SHALL NOT fetch data in
-the browser.
+The published site SHALL serve a single page at `/`. The page SHALL have
+no navigation, accounts, or article list.
+
+Every figure the page reports SHALL be present in the delivered document.
+The page SHALL NOT fetch, request, or derive any reported figure in the
+browser: no `fetch`, no `XMLHttpRequest`, no `EventSource`, no WebSocket,
+no dynamic import of data. Atlas is the only writer, and a reader with
+scripting disabled SHALL still see every figure.
+
+Presentation may use an external typeface and client-side script. A
+script SHALL only arrange, reveal, or annotate content already in the
+document. A stylesheet link SHALL only be a typeface source.
 
 #### Scenario: Root is the only view
 
@@ -21,10 +29,22 @@ the browser.
 - **THEN** one document renders the full pulse and no in-page nav to
   other views is present
 
-#### Scenario: No client fetch
+#### Scenario: No data is fetched in the browser
 
 - **WHEN** the document is loaded
-- **THEN** it contains no script that requests a network resource
+- **THEN** it issues no request for reported data and every figure was
+  already in the delivered HTML
+
+#### Scenario: Readable with scripting off
+
+- **WHEN** the page is rendered with JavaScript disabled
+- **THEN** every section, figure and named gap is still present and
+  legible
+
+#### Scenario: A typeface may be loaded
+
+- **WHEN** the page requests an external stylesheet
+- **THEN** it is a typeface source and carries no reported data
 
 ### Requirement: Masthead states as-of time and block
 

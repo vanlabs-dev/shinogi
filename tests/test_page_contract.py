@@ -1,5 +1,11 @@
-"""Public-pulse shell contract. Reads local HTML only. No network."""
+"""Public-pulse contract. Reads local HTML only. No network.
 
+Holds for both states index.html is ever in: the pre-Atlas shell, and a
+published Atlas edition. A test that only accepted the shell would go red
+the moment the renderer did its job.
+"""
+
+import re
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -19,6 +25,18 @@ OPERATOR_TOKENS = (
     "api.telegram.org",
     "next: pick mining.budget_band",
 )
+
+# A typeface source is the only external stylesheet the contract allows.
+FONT_HOSTS = ("fonts.googleapis.com", "fonts.gstatic.com")
+
+# Ways a browser could pull reported data. Presentation script is allowed;
+# fetching a figure is not, because Atlas is the only writer.
+DATA_FETCH = ("fetch(", "XMLHttpRequest", "EventSource", "new WebSocket",
+              "navigator.sendBeacon", "import(")
+
+ASOF_PUBLISHED = re.compile(r"^as of \d{4}-\d{2}-\d{2} \d{2}:\d{2} UTC "
+                            r"\u00b7 block (\d+|not recorded)$")
+ASOF_SHELL = "awaiting first Atlas publish"
 
 
 class Page(HTMLParser):
@@ -85,13 +103,19 @@ def test_section_ids_in_locked_order() -> None:
     assert tuple(page.ids) == SECTION_IDS
 
 
-def test_masthead_wordmark_and_awaiting_asof() -> None:
+def test_masthead_wordmark_and_asof() -> None:
+    """The as-of line is either the pre-Atlas shell or a published
+    edition, and nothing in between. A published edition states the
+    compose time in UTC and either the block or that gap by name."""
     page = _parse(INDEX)
     assert page.h1 == ["SHINOGI"]
-    assert page.asof == ["awaiting first Atlas publish"]
+    assert len(page.asof) == 1
     asof = page.asof[0]
-    assert "block " not in asof
-    assert "as of " not in asof
+    if asof == ASOF_SHELL:
+        assert "block " not in asof
+        assert "as of " not in asof
+        return
+    assert ASOF_PUBLISHED.match(asof), "unrecognised as-of line: %r" % asof
 
 
 def test_code_narrative_has_two_h3_groups() -> None:
@@ -103,17 +127,34 @@ def test_code_narrative_has_two_h3_groups() -> None:
     assert inner.h3 == ["Code", "Narrative"]
 
 
-def test_no_script_and_no_external_assets() -> None:
-    page = _parse(INDEX)
-    assert page.scripts == []
-    assert "fetch(" not in INDEX
-    assert "XMLHttpRequest" not in INDEX
-    for link in page.links:
-        rel = link.get("rel", "").lower()
-        assert rel not in ("stylesheet", "preconnect")
-        href = link.get("href", "")
-        assert not href.startswith("http")
+def test_no_data_is_fetched_in_the_browser() -> None:
+    """Presentation script is allowed. Pulling a reported figure is not:
+    the data must already be in the delivered document."""
+    for token in DATA_FETCH:
+        assert token not in INDEX, "page could fetch data: %r" % token
     assert "@import" not in INDEX
+    for script in _parse(INDEX).scripts:
+        assert "src" not in script, "no external script: %r" % script
+
+
+def test_external_links_are_typeface_sources_only() -> None:
+    for link in _parse(INDEX).links:
+        href = link.get("href", "")
+        if not href.startswith("http"):
+            continue
+        assert any(host in href for host in FONT_HOSTS), \
+            "external link is not a typeface source: %r" % href
+
+
+def test_every_figure_survives_scripting_being_off() -> None:
+    """Strip every script element and the page must still carry its
+    sections and its figures."""
+    stripped = re.sub(r"<script\b.*?</script>", "", INDEX,
+                      flags=re.S | re.I)
+    page = _parse(stripped)
+    assert tuple(page.ids) == SECTION_IDS
+    assert page.h1 == ["SHINOGI"]
+    assert len(page.asof) == 1
 
 
 def test_operator_tokens_absent() -> None:
