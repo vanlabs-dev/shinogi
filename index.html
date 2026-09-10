@@ -52,6 +52,12 @@
       color: var(--muted);
     }
     p { margin: 0 0 1em; color: var(--muted); }
+    ul { margin: 0 0 1em; padding-left: 1.1em; }
+    li { margin: 0 0 0.3em; }
+    .gap { margin: 0 0 0.6em; }
+    .edition { margin: 0 0 2em; color: var(--accent); }
+    .uid { color: var(--fg); }
+    .nm { color: var(--accent); }
     footer {
       margin-top: 48px;
       padding-top: 16px;
@@ -65,31 +71,64 @@
   <header>
     <h1>SHINOGI</h1>
     <div class="tag">A lean read on Bittensor subnets</div>
-    <div class="asof">awaiting first Atlas publish</div>
+    <div class="asof">as of 2026-09-10 20:42 UTC · block 9039402</div>
   </header>
   <main>
+    <p class="edition">First edition. No previous publish to compare against, so no figure shows a change.</p>
     <section id="network">
       <h2>Network</h2>
-      <p>Missing network vitals, runtime spec, and emission-gate bar. Awaiting first Atlas publish.</p>
+      <ul>
+        <li>Runtime spec 455, released as Merge pull request #3146 from RaoFoundation/release-455.</li>
+        <li>Emission-gate bar at 0.00847, rank 32, 32 subnets above it.</li>
+        <li>0 side changes at the bar in the window.</li>
+        <li>TAO at 254.23 USD, 7,323,533 TAO staked, subnets hold 27.66% of stake, 877 new accounts, observed 2026-09-09.</li>
+      </ul>
     </section>
     <section id="movers">
       <h2>Subnet movers</h2>
-      <p>Missing panel snapshots. Awaiting first Atlas publish.</p>
+      <ul>
+        <li>SN36 alpha price +52.4%, from 0.00180 TAO at block 9037896 to 0.00274 TAO at block 9039402.</li>
+        <li>SN44 demand share +45.0%, from 2.7616% at block 9037896 to 4.0036% at block 9039402.</li>
+        <li>SN9 demand share +43.0%, from 1.9621% at block 9037896 to 2.8054% at block 9039402.</li>
+        <li>SN45 demand share +42.6%, from 0.0870% at block 9037896 to 0.1240% at block 9039402.</li>
+        <li>High deregistration risk: SN6, SN20, SN27, SN42, SN45, SN65, SN66, SN115.</li>
+        <li>Ownership contested or takeover-eligible: SN1, SN2, SN3, SN6, SN8, SN9, SN10, SN17.</li>
+        <li>Hovering at the bar (1): SN34.</li>
+      </ul>
     </section>
     <section id="mining">
       <h2>Mining</h2>
-      <p>Missing mining board head. Awaiting first Atlas publish.</p>
+      <ul>
+        <li>Board head: SN44, Score.</li>
+        <li>128 ranked, 0 cut, 128 observed.</li>
+      </ul>
     </section>
     <section id="attention">
       <h2>Attention</h2>
-      <p>Missing fleet attention facts. Awaiting first Atlas publish.</p>
+      <ul>
+        <li><span class="uid">SN12</span> <span class="nm">Compute Horde</span> code activity and price are moving apart</li>
+        <li><span class="uid">SN36</span> <span class="nm">Epago</span> code activity and price are moving apart</li>
+        <li><span class="uid">SN24</span> <span class="nm">Quasar</span> code activity and price are moving apart</li>
+        <li><span class="uid">SN66</span> <span class="nm">conjectures</span> something changed this pass</li>
+        <li><span class="uid">SN102</span> <span class="nm">ConnitoAI</span> something changed this pass</li>
+        <li><span class="uid">SN29</span> <span class="nm">hoτfloaτ</span> code activity and price are moving apart</li>
+        <li><span class="uid">SN19</span> <span class="nm">blockmachine</span> code activity and price are moving apart</li>
+        <li><span class="uid">SN52</span> <span class="nm">Dojo</span> code activity and price are moving apart</li>
+        <li><span class="uid">SN128</span> <span class="nm">ByteLeap</span> code activity and price are moving apart</li>
+        <li><span class="uid">SN43</span> <span class="nm">Graphite</span> code activity and price are moving apart</li>
+      </ul>
     </section>
     <section id="code-narrative">
       <h2>Code / narrative</h2>
       <h3>Code</h3>
-      <p>Missing seven-day push count and incentive-code verdicts. Awaiting first Atlas publish.</p>
+      <ul>
+        <li>53 of 106 tracked subnets pushed in the last seven days.</li>
+        <li>0 material incentive-code changes and 1 of middling significance in the window.</li>
+      </ul>
       <h3>Narrative</h3>
-      <p>Missing model-identifier adoptions and cluster events. Awaiting first Atlas publish.</p>
+      <ul>
+        <li>No model-identifier adoption and no cluster formed in this window.</li>
+      </ul>
     </section>
   </main>
   <footer>shinogi.dev · public read-only · data from Atlas</footer>
