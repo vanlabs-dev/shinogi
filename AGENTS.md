@@ -46,6 +46,17 @@ Remote: `git@github.com:vanlabs-dev/shinogi.git`. Branch: `main`.
 Author: `vanlabs-dev <vanlabs@pm.me>`.
 Pages: Framework None, empty build, output `/`.
 
+The Pi publishes over SSH with a **write-scoped deploy key** for this repo
+alone (`~/.ssh/id_ed25519_shinogi`, fingerprint
+`SHA256:X4AhCwtMCZ6qxMv89Po0fLLXrxAVH49B1T2496p52aI`, selected by a
+`Host github.com` entry with `IdentitiesOnly yes`). That key reaches this
+repo and nothing else: the Pi pulls Atlas anonymously over HTTPS and
+cannot push to it.
+
+A commit made here directly leaves the Pi's checkout behind origin. The
+renderer fetches and fast-forwards before it writes, so that recovers on
+its own; a **diverged** checkout does not, and fails the pass closed.
+
 ## v1 page
 
 One view. No nav, no accounts, no articles.
@@ -72,6 +83,13 @@ not copy the LAN boards.
 
 ## Next
 
-Atlas renderer on the fleet unit. It reads briefing stores, writes
-`index.html` to this contract, and pushes when the hash changes
-(`ExecStartPost=-…`). Run that where the stores are, not from here.
+Done, deployed 2026-09-11. The renderer lives in Atlas at
+`shinogi/atlas_shinogi.py` under its own oneshot unit and timer
+(`atlas-shinogi.timer`, every 6h at `:55` local time, after the fleet
+pass), **not** the `ExecStartPost=-` on the fleet unit this section used
+to suggest: publishing a public page is a different job from repo
+reconciliation and must be stoppable on its own.
+
+It republishes only when a fact on the page has moved. The as-of line
+carries the compose time, which changes every pass, so the gate hashes
+the document with that line normalised out.
