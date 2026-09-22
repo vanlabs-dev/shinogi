@@ -9,10 +9,10 @@ Operator: `vaNlabs` / GitHub `vanlabs-dev`. Personal, not work.
 
 ## Standing (2026-09-22)
 
-**Rename prepared locally.** The product is now subnt and the registered
-domain is `subnt.dev`. Deployment of the renamed publisher is pending;
-see `docs/subnt-rename.md` for the audit and cutover sequence. The paths
-and unit names below describe the target deployment.
+**Publisher rename deployed.** The product is subnt and the registered
+domain is `subnt.dev`. The renamed publisher and timer are live; the new
+domain still needs Cloudflare setup. See `docs/subnt-rename.md` for the
+verified cutover record and remaining domain work.
 
 The existing public page was deployed on 2026-09-11. `index.html` is a
 composed Atlas edition, republished
@@ -25,8 +25,10 @@ Living spec: `openspec/specs/public-pulse/`. Changes:
 `docs/greenfield/public-pulse/`. Renderer stays in Atlas at
 `subnt/atlas_subnt.py`.
 
-Cloudflare Pages serves the static page from `main`. The operator handles
-the `https://subnt.dev` domain cutover; its live status is not verified here.
+Cloudflare deploys the static page from `main`. Verification on 2026-09-22
+identified `Workers Builds: shinogi`, rather than the historical Pages setup.
+`https://shinogi.dev` serves the renamed edition; `subnt.dev` did not resolve.
+The operator handles the new domain in the existing Worker configuration.
 
 **The contract was amended 2026-09-11.** It no longer bans external assets
 and script outright; it bans the page **fetching data in the browser**.
@@ -42,7 +44,7 @@ Atlas Pi (LAN only)
     → compose from stores, read-only
     → scan for operator material and any browser data fetch
     → fast-forward the checkout, then push only if a fact moved
-    → Cloudflare Pages (no build, output /) → subnt.dev
+    → Cloudflare static deployment → subnt.dev (domain cutover pending)
 ```
 
 Its own oneshot unit, **not** an `ExecStartPost` on the fleet timer:
@@ -69,7 +71,8 @@ show `as of <time> · block <n>`. A failed push leaves the last deploy live.
 
 Remote: `git@github.com:vanlabs-dev/subnt.git`. Branch: `main`.
 Author: `vanlabs-dev <vanlabs@pm.me>`.
-Pages: Framework None, empty build, output `/`.
+Historical Pages settings: Framework None, empty build, output `/`.
+Current deployment check: `Workers Builds: shinogi`; verify settings there.
 
 The Pi publishes over SSH with a **write-scoped deploy key** for this repo
 alone (`~/.ssh/id_ed25519_subnt`, fingerprint
@@ -118,7 +121,7 @@ not copy the LAN boards.
 
 ## Next
 
-Complete the rename cutover in `docs/subnt-rename.md`. The renderer lives in Atlas at
+Complete the Cloudflare domain cutover in `docs/subnt-rename.md`. The renderer lives in Atlas at
 `subnt/atlas_subnt.py` under its own oneshot unit and timer
 (`atlas-subnt.timer`, every 6h at `:55` local time, after the fleet
 pass), **not** the `ExecStartPost=-` on the fleet unit this section used

@@ -1,13 +1,37 @@
 # subnt rename audit
 
-Audited 2026-09-22. Source rename reviewed and validated in both repositories.
-The GitHub repository is now `vanlabs-dev/subnt`, and the workstation directory
-is `/home/van/src/github/vanlabs-dev/subnt`. Its `origin` now uses
-`git@github.com:vanlabs-dev/subnt.git`; remote access was verified.
+## Cutover status (2026-09-22)
 
-The operator reports running step 1 on the device. The service result still
-needs confirmation before release. No device migration, push, DNS change,
-or Cloudflare change was performed in this continuation.
+Repository and publisher migration complete. Domain cutover remains pending.
+
+- GitHub repository and workstation directory are `subnt`; both workstation
+  and device remotes use `git@github.com:vanlabs-dev/subnt.git`.
+- Source commits pushed: public page `b37d0f5`, Atlas `1c75b88`.
+  Atlas follow-up `023d202` makes the test bare remote explicitly use `main`;
+  two tests had depended on the workstation's default branch setting.
+- Device checkout is `/home/pi/subnt`. SQLite backup preserved every metadata
+  row, including `figures`, `published_at` and `content_sha256`, and passed
+  `PRAGMA integrity_check`. The original database remains for rollback.
+- Existing deploy key moved to `~/.ssh/id_ed25519_subnt`; fingerprint and
+  write access are unchanged. SSH configuration backup: `~/.ssh/config.before-subnt`.
+- Preview exclusion scan passed; `first_edition=false` and previous-edition
+  comparisons were preserved. All 75 renderer tests passed on the device.
+  Pytest is absent there; all 8 page tests passed on the workstation against
+  the exact device-published revision.
+- `atlas-subnt.service` published `022df7d` successfully at 05:00 UTC
+  (`Result=success`, `ExecMainStatus=0`). `atlas-subnt.timer` is enabled;
+  first scheduled run was listed as 18:56 NZST, then every six hours at :55
+  plus up to three minutes of jitter.
+- Old units are inactive and no longer installed. They are retained in
+  `/etc/systemd/subnt-rename-backup/` for rollback.
+- Cloudflare check `Workers Builds: shinogi` succeeded for `022df7d`.
+  `https://shinogi.dev` served the exact published `index.html`; an unknown
+  path returned HTTP 404. The repository connection survived the rename.
+- `subnt.dev` did not resolve during verification. No Cloudflare account
+  connection or local CLI was available; plugin discovery found no connector.
+  The operator must finish the domain setup on the existing Cloudflare
+  deployment. The check identifies a Worker named `shinogi`, contrary to the
+  historical Pages description below. Do not create a replacement deployment.
 
 ## Source changes completed
 
@@ -36,15 +60,15 @@ Atlas remains the sole producer of future editions.
   field is empty; set it to `https://subnt.dev` after the domain cutover.
 - Workstation: update any external bookmarks or workspace entries that still
   use the old directory path.
-- Pi: deployed files were not inspected or changed. Verify the documented
-  old paths below before running the migration. Change checkout, state,
-  installed units, credential filename and SSH `IdentityFile` together.
-- GitHub deploy key: verified existing key ID `162921037` has
-  `read_only=false`. Its label remains `pi-shinogi-deploy`. A cosmetic label
-  change is pending; preserve the existing key and write scope.
-- Cloudflare and the live URL are operator-owned: check the Pages repository
-  connection, project label, custom domain, apex/www choice and any old-domain
-  redirects. Source text uses `subnt.dev`; this audit does not certify it live.
+- Device migration is complete; the sequence below is retained as the
+  migration and rollback record, not an instruction to repeat completed steps.
+- GitHub deploy key: existing key ID `162921037` retains `read_only=false`.
+  Its cosmetic label remains `pi-shinogi-deploy`; keep the key and write scope.
+- Cloudflare: on the existing `shinogi` Worker, add `subnt.dev` under
+  Settings > Domains & Routes and verify DNS/TLS. Then choose any old-domain
+  redirect and optional project-label change. Do not remove the working old
+  domain before the new one is verified. The apex is the documented target;
+  `www` is not configured by this migration.
 - No tracked CI workflow, build configuration, package name, browser data
   endpoint, canonical URL, sitemap or manifest needed a separate rename.
   The page's root-relative 404 link stays `/`.
@@ -168,12 +192,10 @@ rename, so it cannot overwrite the new wordmark or run from deleted paths.
 
 ## Validation and rollback
 
-Local checks rerun 2026-09-22: 8 page contract tests passed; 75 Atlas
-renderer tests passed. Both repositories pass `git diff --check`.
-No live publish or device integration test was run. Remaining old-name
-references in current source belong only to this migration guide. Git
-metadata, ignored caches, the current workspace path and undeployed device
-files can still use the old name.
+Validation: 8 page tests on the workstation and 75 renderer tests on the
+workstation and device passed. Both repositories passed `git diff --check`.
+The service published successfully and Cloudflare served the exact edition
+on the existing domain. New-domain verification remains pending.
 
 If cutover fails, leave both timers disabled and inspect the service log.
 Restore the prior Atlas revision, checkout path, SSH configuration and saved
