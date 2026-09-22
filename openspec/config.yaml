@@ -1,7 +1,7 @@
 schema: spec-driven
 
 context: |
-  shinogi is the public static dump for https://shinogi.dev.
+  subnt is the public static dump for https://subnt.dev.
   Atlas (~/src/github/vanlabs-dev/atlas) is the worker. This repo
   holds index.html and 404.html. No chain calls, keys, or backend here.
   Cloudflare Pages: Framework None, empty build, output /. Cadence 6h.

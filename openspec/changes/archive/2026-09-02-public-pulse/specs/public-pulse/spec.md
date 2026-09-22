@@ -1,6 +1,6 @@
 ## Purpose
 
-Defines the public shinogi.dev page as one self-contained HTML pulse of
+Defines the public subnt.dev page as one self-contained HTML pulse of
 the Bittensor network, composed from recorded store facts, with named
 gaps and no operator-only material.
 
@@ -26,7 +26,7 @@ the browser.
 
 ### Requirement: Masthead states as-of time and block
 
-The page SHALL open with a masthead containing the wordmark `SHINOGI`,
+The page SHALL open with a masthead containing the wordmark `SUBNT`,
 the tagline `A lean read on Bittensor subnets`, and an as-of line.
 
 When an Atlas edition has been published, the as-of line SHALL be
@@ -85,7 +85,7 @@ pre-Atlas shell.
 The network section SHALL state, when recorded: the live runtime spec
 and matching release subject; root-settable parameter changes in the
 window; the current bar (theta, rank, above-bar count) and its delta
-versus the previous shinogi edition; side-change count in the window;
+versus the previous subnt edition; side-change count in the window;
 TAO/USD, total staked TAO, subnet share of stake, and new accounts,
 each with the vitals date.
 
@@ -199,7 +199,7 @@ six hours. The emission-gate bar uses a twenty-six hour stale bound
 (the briefing default). Network vitals are shown with their
 observation date and SHALL NOT be named stale only because that date
 is older than six hours. Panel movers use the window since the
-previous shinogi publish, or the six hours before compose when there
+previous subnt publish, or the six hours before compose when there
 is no previous publish. An input older than its own bound SHALL be
 named stale and SHALL NOT be presented as current. The page SHALL
 NOT estimate, interpolate, or carry a prior value forward as current.
@@ -236,7 +236,7 @@ next-action lines.
 
 ### Requirement: Editions and deltas
 
-When a previous shinogi publish exists, each figure that has a prior
+When a previous subnt publish exists, each figure that has a prior
 value SHALL show its change since that publish. Deltas SHALL NOT use
 the Telegram briefing watermark. When no previous publish exists, the
 page SHALL state that it is the first edition and SHALL show no
@@ -244,13 +244,13 @@ figure deltas.
 
 #### Scenario: First Atlas edition
 
-- **WHEN** Atlas publishes and no previous shinogi edition exists
+- **WHEN** Atlas publishes and no previous subnt edition exists
 - **THEN** the page states that it is the first edition and shows
   current values without figure deltas
 
 #### Scenario: Later edition compares to last publish
 
-- **WHEN** a previous shinogi publish exists
+- **WHEN** a previous subnt publish exists
 - **THEN** figure deltas compare to that publish, not to Telegram
 
 ### Requirement: Unknown paths are not an SPA

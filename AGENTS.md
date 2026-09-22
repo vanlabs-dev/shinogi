@@ -1,26 +1,32 @@
-# shinogi
+# subnt
 
-A lean read on Bittensor subnets. Public page: https://shinogi.dev
+A lean read on Bittensor subnets. Public page: https://subnt.dev
 
 Atlas (`~/src/github/vanlabs-dev/atlas`) is the worker. This repo is the
 static dump it publishes. No chain calls, no keys, no backend from here.
 
 Operator: `vaNlabs` / GitHub `vanlabs-dev`. Personal, not work.
 
-## Standing (2026-09-11)
+## Standing (2026-09-22)
 
-**Live.** `index.html` on `main` is a composed Atlas edition, republished
-every six hours by `atlas-shinogi.timer` on the Pi. First edition
+**Rename prepared locally.** The product is now subnt and the registered
+domain is `subnt.dev`. Deployment of the renamed publisher is pending;
+see `docs/subnt-rename.md` for the audit and cutover sequence. The paths
+and unit names below describe the target deployment.
+
+The existing public page was deployed on 2026-09-11. `index.html` is a
+composed Atlas edition, republished
+every six hours by `atlas-subnt.timer` on the Pi. First edition
 2026-09-10 20:42 UTC. Do not hand-edit it: the renderer overwrites the
 whole file on every publish.
 
 Living spec: `openspec/specs/public-pulse/`. Changes:
 `openspec/changes/archive/2026-09-02-public-pulse/`. Session notes:
 `docs/greenfield/public-pulse/`. Renderer stays in Atlas at
-`shinogi/atlas_shinogi.py`.
+`subnt/atlas_subnt.py`.
 
-Cloudflare Pages serves `https://shinogi.dev` from `main` (HTTP 200).
-`www` has no records; use the apex.
+Cloudflare Pages serves the static page from `main`. The operator handles
+the `https://subnt.dev` domain cutover; its live status is not verified here.
 
 **The contract was amended 2026-09-11.** It no longer bans external assets
 and script outright; it bans the page **fetching data in the browser**.
@@ -32,11 +38,11 @@ accepts both the pre-Atlas shell and a published edition.
 
 ```
 Atlas Pi (LAN only)
-  atlas-shinogi.timer, every 6h at :55 local
+  atlas-subnt.timer, every 6h at :55 local
     → compose from stores, read-only
     → scan for operator material and any browser data fetch
     → fast-forward the checkout, then push only if a fact moved
-    → Cloudflare Pages (no build, output /) → shinogi.dev
+    → Cloudflare Pages (no build, output /) → subnt.dev
 ```
 
 Its own oneshot unit, **not** an `ExecStartPost` on the fleet timer:
@@ -61,12 +67,12 @@ show `as of <time> · block <n>`. A failed push leaves the last deploy live.
 | `docs/greenfield/public-pulse/` | Session notes. |
 | `AGENTS.md` | This file. |
 
-Remote: `git@github.com:vanlabs-dev/shinogi.git`. Branch: `main`.
+Remote: `git@github.com:vanlabs-dev/subnt.git`. Branch: `main`.
 Author: `vanlabs-dev <vanlabs@pm.me>`.
 Pages: Framework None, empty build, output `/`.
 
 The Pi publishes over SSH with a **write-scoped deploy key** for this repo
-alone (`~/.ssh/id_ed25519_shinogi`, fingerprint
+alone (`~/.ssh/id_ed25519_subnt`, fingerprint
 `SHA256:X4AhCwtMCZ6qxMv89Po0fLLXrxAVH49B1T2496p52aI`, selected by a
 `Host github.com` entry with `IdentitiesOnly yes`). That key reaches this
 repo and nothing else: the Pi pulls Atlas anonymously over HTTPS and
@@ -112,9 +118,9 @@ not copy the LAN boards.
 
 ## Next
 
-Done, deployed 2026-09-11. The renderer lives in Atlas at
-`shinogi/atlas_shinogi.py` under its own oneshot unit and timer
-(`atlas-shinogi.timer`, every 6h at `:55` local time, after the fleet
+Complete the rename cutover in `docs/subnt-rename.md`. The renderer lives in Atlas at
+`subnt/atlas_subnt.py` under its own oneshot unit and timer
+(`atlas-subnt.timer`, every 6h at `:55` local time, after the fleet
 pass), **not** the `ExecStartPost=-` on the fleet unit this section used
 to suggest: publishing a public page is a different job from repo
 reconciliation and must be stoppable on its own.

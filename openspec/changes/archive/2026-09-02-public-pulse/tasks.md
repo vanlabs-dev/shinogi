@@ -9,7 +9,7 @@
 ## 2. Contract test
 
 - [x] 2.1 Add `tests/test_page_contract.py` that reads `index.html` and `404.html` with no network
-- [x] 2.2 Assert section ids appear in the locked order, masthead has SHINOGI and the awaiting as-of line, `#code-narrative` contains two `h3` groups (Code, Narrative), and there is no script that fetches
+- [x] 2.2 Assert section ids appear in the locked order, masthead has SUBNT and the awaiting as-of line, `#code-narrative` contains two `h3` groups (Code, Narrative), and there is no script that fetches
 - [x] 2.3 Assert these exact operator tokens are absent: Telegram identifiers, LAN host addresses, TaoStats quota, `mining.budget_band`, exploit paths. Do not match short substrings such as `key` or `Pi`
 - [x] 2.4 Assert `404.html` is a distinct miss page and links to `/`
 - [x] 2.5 Run the test (`pytest -q` from the repo root)

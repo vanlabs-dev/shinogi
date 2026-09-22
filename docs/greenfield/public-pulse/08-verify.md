@@ -7,8 +7,8 @@ Exit: 0
 
 ```
 === greenfield verify: public-pulse ===
-Project root: /home/van/src/github/vanlabs-dev/shinogi
-Artifact dir: /home/van/src/github/vanlabs-dev/shinogi/docs/greenfield/public-pulse
+Project root: /home/van/src/github/vanlabs-dev/subnt
+Artifact dir: /home/van/src/github/vanlabs-dev/subnt/docs/greenfield/public-pulse
 
 Checking greenfield artifacts...
   OK  01-brainstorm.md

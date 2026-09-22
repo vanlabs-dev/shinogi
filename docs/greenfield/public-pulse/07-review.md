@@ -72,7 +72,7 @@ Status: accepted A (2026-09-02). Folded into spec, design, proposal.
 - Landmark ids are the Atlas join. Keep them.
 - One file, inline CSS, no script. Keep current chrome.
 - Code and narrative share `#code-narrative`.
-- Deltas vs previous shinogi publish, not the Telegram watermark.
+- Deltas vs previous subnt publish, not the Telegram watermark.
 - This apply does not implement Atlas. Most SHALL clauses are the cross-repo
   contract. The local test only has to lock the shell (ids, awaiting as-of,
   no fetch, no operator strings, 404). Session 4 archive freezes the

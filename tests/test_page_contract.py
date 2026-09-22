@@ -108,7 +108,7 @@ def test_masthead_wordmark_and_asof() -> None:
     edition, and nothing in between. A published edition states the
     compose time in UTC and either the block or that gap by name."""
     page = _parse(INDEX)
-    assert page.h1 == ["SHINOGI"]
+    assert page.h1 == ["SUBNT"]
     assert len(page.asof) == 1
     asof = page.asof[0]
     if asof == ASOF_SHELL:
@@ -153,7 +153,7 @@ def test_every_figure_survives_scripting_being_off() -> None:
                       flags=re.S | re.I)
     page = _parse(stripped)
     assert tuple(page.ids) == SECTION_IDS
-    assert page.h1 == ["SHINOGI"]
+    assert page.h1 == ["SUBNT"]
     assert len(page.asof) == 1
 
 

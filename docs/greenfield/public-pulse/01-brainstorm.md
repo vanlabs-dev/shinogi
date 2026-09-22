@@ -4,7 +4,7 @@ Session 1 brainstorm. Approved 2026-09-01.
 
 ## Goal
 
-Lock v1 of shinogi.dev as a public pulse: one self-contained HTML read of
+Lock v1 of subnt.dev as a public pulse: one self-contained HTML read of
 the Bittensor network, composed from Atlas store facts, published by Atlas
 into this repo.
 
@@ -65,7 +65,7 @@ document in the current placeholder chrome (dark, mono, masthead).
 
 Section order on the page (AGENTS.md, not Telegram order):
 
-1. Masthead: `SHINOGI` · tagline · `as of <time> · block <n>`
+1. Masthead: `SUBNT` · tagline · `as of <time> · block <n>`
 2. Network
 3. Subnet movers
 4. Mining head
@@ -76,7 +76,7 @@ Attention head is a new public strip, not a briefing section and not the
 LAN dashboard. Source: fleet attention facts (`score_subnet` and friends).
 Show about ten rows. Reuse facts, not board chrome.
 
-Deltas, when shown, are against the previous shinogi publish (6h
+Deltas, when shown, are against the previous subnt publish (6h
 hash-change), not against the Telegram briefing watermark. First publish
 states that it is the first edition.
 
