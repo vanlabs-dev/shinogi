@@ -27,6 +27,9 @@ Repository and publisher migration complete. Domain cutover remains pending.
 - Cloudflare check `Workers Builds: shinogi` succeeded for `022df7d`.
   `https://shinogi.dev` served the exact published `index.html`; an unknown
   path returned HTTP 404. The repository connection survived the rename.
+- The operator reconnected `vanlabs-dev/subnt` in Cloudflare and saved
+  a blank build command with deploy command `npx wrangler deploy`.
+  A documentation-only push will verify the reconnected build trigger.
 - `subnt.dev` did not resolve during verification. No Cloudflare account
   connection or local CLI was available; plugin discovery found no connector.
   The operator must finish the domain setup on the existing Cloudflare
