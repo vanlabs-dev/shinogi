@@ -163,22 +163,38 @@ mining budget band, rent, or hardware rung.
 
 ### Requirement: Attention head section content
 
-The attention section SHALL list at most ten subnets, ordered by the
-fleet attention score descending, and SHALL omit subnets whose
-attention signal is unpaired emission opacity. Each row SHALL state
-netuid, recorded name, and a short public reason from this set:
-fresh, divergence, emission, abandon, opaque, quiet. The section
-SHALL NOT show the numeric score, direction-cue glyphs, or a board
-thesis sentence. When a recorded name is missing, the row SHALL name
-that gap and SHALL NOT invent a name. When no rows remain, the
-section SHALL name that gap.
+The attention section SHALL select at most ten subnets in the fleet
+board's descending score order and SHALL omit subnets whose attention
+signal is unpaired emission opacity. Each row SHALL state netuid,
+recorded name, and a short public reason derived from the recorded score
+components (`div_signed`, `cold`, `econ_fresh`, `pulse_spike`) when present,
+with category-based fallback phrases. An unrecognised reason SHALL be
+named as a gap.
+
+Rows sharing a reason SHALL be grouped. Groups SHALL follow the first
+appearance of each reason in the selected rows and preserve row order
+within each group. Each group SHALL show its reason and membership count.
+The section SHALL NOT show the numeric score, direction-cue glyphs, or a
+board thesis sentence. A missing recorded name SHALL be named as a gap.
+When no rows remain, the section SHALL name the gap and invent no rows.
 
 #### Scenario: Ten or fewer rows
 
 - **WHEN** attention facts exist
-- **THEN** the section lists at most ten rows that are not unpaired
-  emission opacity, each with netuid, name, and a short public
-  why-phrase, and no score number
+- **THEN** at most ten eligible rows are selected in fleet board order,
+  each with netuid, recorded name or gap, and a short public reason
+
+#### Scenario: Reasons reflect recorded components
+
+- **WHEN** subnets share a category but have different recorded components
+- **THEN** their public reasons reflect those differences without showing
+  a score, direction-cue glyph, or thesis
+
+#### Scenario: Shared reasons are grouped
+
+- **WHEN** selected rows share a reason
+- **THEN** they appear in one group with that reason and its membership
+  count, preserving first-seen group order and row order within groups
 
 #### Scenario: No attention facts
 

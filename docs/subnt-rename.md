@@ -2,7 +2,7 @@
 
 ## Cutover status (2026-09-22)
 
-Repository and publisher migration complete. Domain cutover remains pending.
+Repository, publisher and domain cutover complete. `https://subnt.dev` is live.
 
 - GitHub repository and workstation directory are `subnt`; both workstation
   and device remotes use `git@github.com:vanlabs-dev/subnt.git`.
@@ -24,17 +24,13 @@ Repository and publisher migration complete. Domain cutover remains pending.
   plus up to three minutes of jitter.
 - Old units are inactive and no longer installed. They are retained in
   `/etc/systemd/subnt-rename-backup/` for rollback.
-- Cloudflare check `Workers Builds: shinogi` succeeded for `022df7d`.
-  `https://shinogi.dev` served the exact published `index.html`; an unknown
-  path returned HTTP 404. The repository connection survived the rename.
-- The operator reconnected `vanlabs-dev/subnt` in Cloudflare and saved
-  a blank build command with deploy command `npx wrangler deploy`.
-  A documentation-only push will verify the reconnected build trigger.
-- `subnt.dev` did not resolve during verification. No Cloudflare account
-  connection or local CLI was available; plugin discovery found no connector.
-  The operator must finish the domain setup on the existing Cloudflare
-  deployment. The check identifies a Worker named `shinogi`, contrary to the
-  historical Pages description below. Do not create a replacement deployment.
+- The operator reconnected `vanlabs-dev/subnt` in Cloudflare with a blank
+  build command and deploy command `npx wrangler deploy`. The build for
+  `d28bb54` succeeded, confirming the reconnected trigger.
+- `https://subnt.dev` serves the exact published `index.html` over valid
+  HTTPS with HTTP 200; an unknown path returns HTTP 404. Public DNS resolves
+  to Cloudflare. The operator confirmed the page loads after an earlier
+  negative DNS cache expired. `www.subnt.dev` is not configured.
 
 ## Source changes completed
 
@@ -56,27 +52,27 @@ The generated page received only the three branding substitutions, alongside
 the matching renderer changes. Its figures and as-of time were preserved.
 Atlas remains the sole producer of future editions.
 
-## External and local dependencies still pending
+## Remaining metadata and optional cleanup
 
 - GitHub rename and workstation directory/remote changes are complete.
-  The new repository resolves and its default branch is `main`. Its homepage
-  field is empty; set it to `https://subnt.dev` after the domain cutover.
+  The default branch is `main`; the GitHub homepage is `https://subnt.dev`.
 - Workstation: update any external bookmarks or workspace entries that still
   use the old directory path.
 - Device migration is complete; the sequence below is retained as the
   migration and rollback record, not an instruction to repeat completed steps.
 - GitHub deploy key: existing key ID `162921037` retains `read_only=false`.
   Its cosmetic label remains `pi-shinogi-deploy`; keep the key and write scope.
-- Cloudflare: on the existing `shinogi` Worker, add `subnt.dev` under
-  Settings > Domains & Routes and verify DNS/TLS. Then choose any old-domain
-  redirect and optional project-label change. Do not remove the working old
-  domain before the new one is verified. The apex is the documented target;
-  `www` is not configured by this migration.
+- Cloudflare build check still uses the cosmetic name `Workers Builds: shinogi`.
+  An optional label rename is not required for the live `subnt.dev` domain.
+  The old domain has no A record in the verified public DNS response;
+  an old-domain redirect is not configured by this migration.
 - No tracked CI workflow, build configuration, package name, browser data
   endpoint, canonical URL, sitemap or manifest needed a separate rename.
   The page's root-relative 404 link stays `/`.
 
-## Cutover sequence
+## Completed cutover sequence
+
+Historical procedure only. Do not rerun it on the migrated device.
 
 Review and commit both repositories first. Atlas instructions require an
 explicit request before pushing. Stop the old publisher before releasing the
@@ -198,7 +194,7 @@ rename, so it cannot overwrite the new wordmark or run from deleted paths.
 Validation: 8 page tests on the workstation and 75 renderer tests on the
 workstation and device passed. Both repositories passed `git diff --check`.
 The service published successfully and Cloudflare served the exact edition
-on the existing domain. New-domain verification remains pending.
+on `https://subnt.dev`, with valid HTTPS and the expected 404 response.
 
 If cutover fails, leave both timers disabled and inspect the service log.
 Restore the prior Atlas revision, checkout path, SSH configuration and saved

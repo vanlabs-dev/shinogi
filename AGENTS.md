@@ -9,10 +9,10 @@ Operator: `vaNlabs` / GitHub `vanlabs-dev`. Personal, not work.
 
 ## Standing (2026-09-22)
 
-**Publisher rename deployed.** The product is subnt and the registered
-domain is `subnt.dev`. The renamed publisher and timer are live; the new
-domain still needs Cloudflare setup. See `docs/subnt-rename.md` for the
-verified cutover record and remaining domain work.
+**Live at `https://subnt.dev`.** Repository, publisher and domain rename
+completed on 2026-09-22. HTTPS serves the published edition and unknown
+paths return HTTP 404. `www` is not configured. See `docs/subnt-rename.md`
+for the verified cutover record and rollback copies.
 
 The existing public page was deployed on 2026-09-11. `index.html` is a
 composed Atlas edition, republished
@@ -25,10 +25,9 @@ Living spec: `openspec/specs/public-pulse/`. Changes:
 `docs/greenfield/public-pulse/`. Renderer stays in Atlas at
 `subnt/atlas_subnt.py`.
 
-Cloudflare deploys the static page from `main`. Verification on 2026-09-22
-identified `Workers Builds: shinogi`, rather than the historical Pages setup.
-`https://shinogi.dev` serves the renamed edition; `subnt.dev` did not resolve.
-The operator handles the new domain in the existing Worker configuration.
+Cloudflare Workers static hosting deploys `main` to `https://subnt.dev`.
+Build command is blank; deploy command is `npx wrangler deploy`.
+The existing deployment check is named `Workers Builds: shinogi`.
 
 **The contract was amended 2026-09-11.** It no longer bans external assets
 and script outright; it bans the page **fetching data in the browser**.
@@ -44,7 +43,7 @@ Atlas Pi (LAN only)
     → compose from stores, read-only
     → scan for operator material and any browser data fetch
     → fast-forward the checkout, then push only if a fact moved
-    → Cloudflare static deployment → subnt.dev (domain cutover pending)
+    → Cloudflare static deployment → subnt.dev
 ```
 
 Its own oneshot unit, **not** an `ExecStartPost` on the fleet timer:
@@ -53,7 +52,7 @@ must be stoppable on its own. It runs at `:55` so it lands after the fleet
 pass, on **local time**, matching `atlas-fleet.timer`; a UTC schedule would
 break that ordering under daylight saving.
 
-Cadence is 6h, not hourly (Pages Free: 500 builds/month), and the gate
+Cadence is 6h, not hourly, and the gate
 hashes the facts with the as-of line normalised out, so an edition whose
 figures have not moved is not republished at all. An Atlas edition must
 show `as of <time> · block <n>`. A failed push leaves the last deploy live.
@@ -62,8 +61,8 @@ show `as of <time> · block <n>`. A failed push leaves the last deploy live.
 
 | Path | Role |
 |---|---|
-| `index.html` | Public-pulse shell. Self-contained. Atlas overwrites on publish. |
-| `404.html` | Required so Pages is not an SPA. |
+| `index.html` | Published Atlas edition. Atlas overwrites on publish. |
+| `404.html` | Not-found document for unknown paths. |
 | `tests/` `pytest.ini` | Local contract test. `pytest -q`. |
 | `openspec/` | Living spec `specs/public-pulse/`. Archived change `changes/archive/2026-09-02-public-pulse/`. |
 | `docs/greenfield/public-pulse/` | Session notes. |
@@ -71,8 +70,6 @@ show `as of <time> · block <n>`. A failed push leaves the last deploy live.
 
 Remote: `git@github.com:vanlabs-dev/subnt.git`. Branch: `main`.
 Author: `vanlabs-dev <vanlabs@pm.me>`.
-Historical Pages settings: Framework None, empty build, output `/`.
-Current deployment check: `Workers Builds: shinogi`; verify settings there.
 
 The Pi publishes over SSH with a **write-scoped deploy key** for this repo
 alone (`~/.ssh/id_ed25519_subnt`, fingerprint
@@ -102,8 +99,9 @@ chart introduces no figure the page does not otherwise report, and never
 estimates or smooths.
 
 Attention reasons are **derived** from the score's components and rows
-sharing a reason are **grouped**. One phrase per category rendered ten
-identical lines, because 93 of 106 public rows carry the same category.
+sharing a reason are **grouped**. The reason uses `div_signed`, `cold`,
+`econ_fresh` and `pulse_spike` when available, with category fallbacks.
+Groups follow first appearance in the selected rows; each retains row order.
 
 Off the page: wallets, keys, Telegram, Pi address, TaoStats quota,
 exploit paths, `mining.budget_band`.
@@ -114,20 +112,19 @@ not copy the LAN boards.
 ## Rules
 
 - If it does not read an Atlas store or write `index.html`, it is not v1.
-- Do not rebuild ingest here. No Next.js, Worker, Function, Supabase, Stripe.
+- Do not rebuild ingest here. No Next.js, custom Worker/backend code,
+  Function, Supabase or Stripe. Workers static hosting is allowed.
 - No extra Cache Rule on the custom domain.
 - IntoTAO is reference only. Do not reuse that code.
 - No em dashes.
 
+## Previous deployment description
+
+Older session notes describe Cloudflare Pages. The verified deployment uses
+Workers static hosting. Those dated notes are historical; do not recreate a
+Pages project or add a custom backend to match them.
+
 ## Next
 
-Complete the Cloudflare domain cutover in `docs/subnt-rename.md`. The renderer lives in Atlas at
-`subnt/atlas_subnt.py` under its own oneshot unit and timer
-(`atlas-subnt.timer`, every 6h at `:55` local time, after the fleet
-pass), **not** the `ExecStartPost=-` on the fleet unit this section used
-to suggest: publishing a public page is a different job from repo
-reconciliation and must be stoppable on its own.
-
-It republishes only when a fact on the page has moved. The as-of line
-carries the compose time, which changes every pass, so the gate hashes
-the document with that line normalised out.
+Rename complete. No required cutover work remains. The migration record and
+rollback copies are documented in `docs/subnt-rename.md`.

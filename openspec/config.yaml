@@ -4,7 +4,8 @@ context: |
   subnt is the public static dump for https://subnt.dev.
   Atlas (~/src/github/vanlabs-dev/atlas) is the worker. This repo
   holds index.html and 404.html. No chain calls, keys, or backend here.
-  Cloudflare Pages: Framework None, empty build, output /. Cadence 6h.
+  Cloudflare Workers static hosting: blank build command, deploy command
+  npx wrangler deploy, production branch main. Cadence 6h.
   v1 is one self-contained HTML view: public pulse. No nav, accounts,
   or articles. Compose from Atlas briefing store facts, not LAN boards.
   Off the page: wallets, keys, Telegram, Pi address, TaoStats quota,
@@ -19,14 +20,14 @@ rules:
   specs:
     - Requirements describe the published HTML contract, not Atlas internals
   design:
-    - Renderer stays in Atlas. This repo only specifies the page and ships a first-edition shell
+    - Renderer stays in Atlas. This repo specifies the page and holds the published edition
   tasks:
     - "Tasks in this repo are the contract HTML and living docs. Do not implement the Atlas renderer here."
 
 operations:
   apply:
     guidance:
-      - Do not add a backend, Worker, Function, or JS fetch
+      - Do not add custom backend/Worker code, a Function, or JS data fetch; Workers static hosting is allowed
       - Do not copy LAN board chrome
   archive:
     guidance:
