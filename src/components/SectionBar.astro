@@ -1,0 +1,17 @@
+---
+const { sections } = Astro.props;
+---
+<nav class="bar" aria-label="Sections">
+  <ul>{sections.map((s) => <li><a href={`#${s.id}`}>{s.title}</a></li>)}</ul>
+</nav>
+
+<style>
+  .bar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--c-bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--c-line)}
+  ul{mask-image:linear-gradient(90deg,black calc(100% - 32px),transparent);display:flex;gap:var(--space-1);margin:0;padding:0;list-style:none;overflow-x:auto;scrollbar-width:none}
+  ul::-webkit-scrollbar{display:none}
+  a{display:flex;align-items:center;min-height:var(--layout-target);padding:0 var(--space-3);white-space:nowrap;color:var(--c-fg-2);text-decoration:none;font-size:var(--size-s);font-weight:550;border-radius:var(--radius-s)}
+  a:hover{color:var(--c-fg)}
+  a:focus-visible{outline:2px solid var(--c-accent);outline-offset:-2px}
+  li:first-child a{padding-left:0}
+  li:last-child a{margin-right:32px}
+</style>

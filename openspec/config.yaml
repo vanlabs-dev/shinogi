@@ -11,6 +11,10 @@ context: |
   Off the page: wallets, keys, Telegram, Pi address, TaoStats quota,
   exploit paths, mining.budget_band, atlas/operator section.
   Gaps named, never estimated. No em dashes. IntoTAO is reference only.
+  v2 (branch v2, change subnt-v2): Astro static build, build command
+  npm ci && npm run build, output dist/. Atlas writes data/*.json against
+  schema/subnt-1.0.json; this repo never writes data/ and computes no
+  figure. No browser data fetch, no Worker or server code.
   Author: vanlabs-dev <vanlabs@pm.me>. Never add Co-Authored-By.
 
 rules:
@@ -29,6 +33,8 @@ operations:
     guidance:
       - Do not add custom backend/Worker code, a Function, or JS data fetch; Workers static hosting is allowed
       - Do not copy LAN board chrome
+      - Never write data/ from this repo; fixtures live in tests/fixtures/
+      - Subscriber blocks carry shape only; real figures never enter this repo
   archive:
     guidance:
       - Summarize the archive outcome before finishing

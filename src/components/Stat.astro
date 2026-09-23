@@ -1,0 +1,24 @@
+---
+// Value, delta and date, all as written by Atlas.
+const { fact } = Astro.props;
+const d = fact.delta;
+---
+<div class="stat">
+  <dt>{fact.label}</dt>
+  <dd>
+    <span class="v">{fact.text}</span>
+    {d && <span class={`d ${d.direction}`}>{d.text}</span>}
+    {fact.freshness && <span class={`f${fact.stale ? " stale" : ""}`}>{fact.freshness}</span>}
+  </dd>
+</div>
+
+<style>
+  .stat{background:var(--c-surface);border:1px solid var(--c-line);border-radius:var(--radius-m);padding:var(--space-3) var(--space-4);min-width:0}
+  dt{min-height:2lh;font-size:var(--size-xs);line-height:1.35;color:var(--c-fg-2);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  dd{margin:var(--space-1) 0 0;display:flex;flex-direction:column;gap:2px;min-width:0}
+  .v{font-size:var(--size-stat);font-weight:650;letter-spacing:-.02em;line-height:1.15;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .d{font-size:var(--size-s);font-weight:600;font-variant-numeric:tabular-nums}
+  .d.up{color:var(--c-up)} .d.down{color:var(--c-down)} .d.flat{color:var(--c-fg-2)}
+  .f{font-size:var(--size-s);color:var(--c-fg-3);overflow-wrap:break-word;hyphens:none}
+  .f.stale{color:var(--c-down)}
+</style>
