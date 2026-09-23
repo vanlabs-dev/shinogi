@@ -1,0 +1,40 @@
+{
+ "schema": "subnt/1.0",
+ "kind": "section",
+ "composed_at": "2026-09-23T15:49:36Z",
+ "block": 9131136,
+ "section": "code-narrative",
+ "question": "Where is code shipping, and what is being adopted?",
+ "lead": "54 of 100 tracked subnets pushed code in the last seven days.",
+ "access": "public",
+ "blocks": [
+  {
+   "id": "code",
+   "access": "public",
+   "facts": [
+    {
+     "id": "pushed",
+     "label": "Pushed in 7 days",
+     "text": "54 / 100",
+     "headline": true,
+     "freshness": "tracked subnets"
+    }
+   ],
+   "notes": [
+    "0 material incentive-code changes and 0 of middling significance in the window."
+   ],
+   "gaps": [],
+   "title": "Code"
+  },
+  {
+   "id": "narrative",
+   "access": "public",
+   "facts": [],
+   "notes": [
+    "No model-identifier adoption and no cluster formed in this window."
+   ],
+   "gaps": [],
+   "title": "Narrative"
+  }
+ ]
+}

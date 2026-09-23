@@ -1,0 +1,86 @@
+{
+ "schema": "subnt/1.0",
+ "kind": "section",
+ "composed_at": "2026-09-23T15:49:36Z",
+ "block": 9131136,
+ "section": "attention",
+ "question": "Which subnets deserve a closer read, and why?",
+ "lead": "10 subnets deserve a closer read; most are priced ahead of a repository that has gone quiet.",
+ "access": "public",
+ "blocks": [
+  {
+   "id": "groups",
+   "access": "public",
+   "facts": [],
+   "notes": [],
+   "gaps": [],
+   "groups": [
+    {
+     "label": "priced ahead of a repository that has gone quiet",
+     "rows": [
+      {
+       "netuid": 29,
+       "name": "hoτfloaτ",
+       "summary": "priced ahead of a repository that has gone quiet"
+      },
+      {
+       "netuid": 94,
+       "name": "pending...",
+       "summary": "priced ahead of a repository that has gone quiet"
+      },
+      {
+       "netuid": 52,
+       "name": "Dojo",
+       "summary": "priced ahead of a repository that has gone quiet"
+      },
+      {
+       "netuid": 48,
+       "name": "Quantum Compute",
+       "summary": "priced ahead of a repository that has gone quiet"
+      },
+      {
+       "netuid": 27,
+       "name": "Orion",
+       "summary": "priced ahead of a repository that has gone quiet"
+      },
+      {
+       "netuid": 19,
+       "name": "blockmachine",
+       "summary": "priced ahead of a repository that has gone quiet"
+      },
+      {
+       "netuid": 64,
+       "name": "Chutes",
+       "summary": "priced ahead of a repository that has gone quiet"
+      },
+      {
+       "netuid": 128,
+       "name": "ByteLeap",
+       "summary": "priced ahead of a repository that has gone quiet"
+      }
+     ]
+    },
+    {
+     "label": "building faster than the price reflects",
+     "rows": [
+      {
+       "netuid": 25,
+       "name": "UR",
+       "summary": "building faster than the price reflects"
+      }
+     ]
+    },
+    {
+     "label": "branch activity spiked this pass",
+     "rows": [
+      {
+       "netuid": 51,
+       "name": "lium.io",
+       "summary": "branch activity spiked this pass"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

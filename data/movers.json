@@ -1,0 +1,82 @@
+{
+ "schema": "subnt/1.0",
+ "kind": "section",
+ "composed_at": "2026-09-23T15:49:36Z",
+ "block": 9131136,
+ "section": "movers",
+ "question": "Which subnets moved, and which crossed the bar?",
+ "lead": "SN44 moved -76.0% on demand share in this window.",
+ "access": "public",
+ "blocks": [
+  {
+   "id": "lead",
+   "access": "public",
+   "facts": [
+    {
+     "id": "lead-mover",
+     "label": "SN44 demand share",
+     "text": "-76.0%",
+     "headline": true,
+     "freshness": "3.7042% at block 9130536 to 0.8886% at block 9131136",
+     "delta": null
+    }
+   ],
+   "notes": [],
+   "gaps": [],
+   "series": [
+    {
+     "id": "lead-mover-trend",
+     "kind": "line",
+     "label": "SN44 demand share",
+     "caption": "SN44 demand share, 3.7042% at block 9130536 to 0.8886% at block 9131136.",
+     "points": [
+      0.037232579548908386,
+      0.037182743859687076,
+      0.037170180089479615,
+      0.03717162569674252,
+      0.037137401284826864,
+      0.037168490687072724,
+      0.037133064122686014,
+      0.03708544500534271,
+      0.037112853694182824,
+      0.03706844350202796,
+      0.037074198352668904,
+      0.03704217287150843,
+      0.03555624090994595,
+      0.008886252807237729
+     ]
+    }
+   ]
+  },
+  {
+   "id": "board",
+   "access": "public",
+   "facts": [],
+   "notes": [
+    "High deregistration risk: SN6, SN27, SN42, SN55, SN84, SN98, SN106, SN109.",
+    "Ownership contested or takeover-eligible: SN1, SN2, SN3, SN6, SN8, SN9, SN10, SN14."
+   ],
+   "gaps": [],
+   "rows": {
+    "label": "Movers this window",
+    "sortable": true,
+    "items": [
+     {
+      "netuid": 44,
+      "name": null,
+      "summary": "demand share",
+      "figure": "-76.0%",
+      "sort": -76.0,
+      "detail": [
+       {
+        "id": "move",
+        "label": "Reading",
+        "text": "SN44 demand share -76.0%, from 3.7042% at block 9130536 to 0.8886% at block 9131136."
+       }
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}

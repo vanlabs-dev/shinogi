@@ -1,0 +1,103 @@
+{
+ "schema": "subnt/1.0",
+ "kind": "section",
+ "composed_at": "2026-09-23T15:49:36Z",
+ "block": 9131136,
+ "section": "mining",
+ "question": "Where is mining worth a look now?",
+ "lead": "SN120, Affine, heads the mining board; 128 of 128 observed subnets rank.",
+ "access": "public",
+ "blocks": [
+  {
+   "id": "board",
+   "access": "public",
+   "facts": [
+    {
+     "id": "ranked",
+     "label": "Ranked of observed",
+     "text": "128 / 128",
+     "headline": true,
+     "freshness": "0 cut"
+    },
+    {
+     "id": "head",
+     "label": "Board head",
+     "text": "SN120",
+     "value": 120,
+     "headline": true,
+     "freshness": "Affine"
+    }
+   ],
+   "notes": [
+    "The top ten is unchanged since the last publish."
+   ],
+   "gaps": [],
+   "rows": {
+    "label": "Top ten by monthly yield",
+    "sortable": false,
+    "items": [
+     {
+      "netuid": 120,
+      "name": null,
+      "summary": "top ten, position 1",
+      "sort": 1
+     },
+     {
+      "netuid": 44,
+      "name": null,
+      "summary": "top ten, position 2",
+      "sort": 2
+     },
+     {
+      "netuid": 68,
+      "name": null,
+      "summary": "top ten, position 3",
+      "sort": 3
+     },
+     {
+      "netuid": 4,
+      "name": null,
+      "summary": "top ten, position 4",
+      "sort": 4
+     },
+     {
+      "netuid": 110,
+      "name": null,
+      "summary": "top ten, position 5",
+      "sort": 5
+     },
+     {
+      "netuid": 90,
+      "name": null,
+      "summary": "top ten, position 6",
+      "sort": 6
+     },
+     {
+      "netuid": 9,
+      "name": null,
+      "summary": "top ten, position 7",
+      "sort": 7
+     },
+     {
+      "netuid": 3,
+      "name": null,
+      "summary": "top ten, position 8",
+      "sort": 8
+     },
+     {
+      "netuid": 93,
+      "name": null,
+      "summary": "top ten, position 9",
+      "sort": 9
+     },
+     {
+      "netuid": 80,
+      "name": null,
+      "summary": "top ten, position 10",
+      "sort": 10
+     }
+    ]
+   }
+  }
+ ]
+}
