@@ -1,0 +1,22 @@
+{
+ "schema": "subnt/1.0",
+ "kind": "section",
+ "composed_at": "2026-09-23T07:48:53Z",
+ "block": 9128722,
+ "section": "mining",
+ "question": "Where is mining worth a look now?",
+ "lead": "SN120, Affine, heads the mining board; 128 of 128 observed subnets rank.",
+ "access": "public",
+ "blocks": [
+  {
+   "id": "board",
+   "access": "subscriber",
+   "title": "Mining board",
+   "shape": {
+    "facts": 2,
+    "rows": 10,
+    "series": 0
+   }
+  }
+ ]
+}

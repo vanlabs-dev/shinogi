@@ -1,0 +1,40 @@
+{
+ "schema": "subnt/1.0",
+ "kind": "section",
+ "composed_at": "2026-09-23T07:48:53Z",
+ "block": 9128722,
+ "section": "code-narrative",
+ "question": "Where is code shipping, and what is being adopted?",
+ "lead": "55 of 100 tracked subnets pushed code in the last seven days.",
+ "access": "public",
+ "blocks": [
+  {
+   "id": "code",
+   "access": "public",
+   "facts": [
+    {
+     "id": "pushed",
+     "label": "Pushed in 7 days",
+     "text": "55 / 100",
+     "headline": true,
+     "freshness": "tracked subnets"
+    }
+   ],
+   "notes": [
+    "0 material incentive-code changes and 1 of middling significance in the window."
+   ],
+   "gaps": [],
+   "title": "Code"
+  },
+  {
+   "id": "narrative",
+   "access": "public",
+   "facts": [],
+   "notes": [
+    "Model gpt-6-luna adopted by SN71."
+   ],
+   "gaps": [],
+   "title": "Narrative"
+  }
+ ]
+}

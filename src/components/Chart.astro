@@ -1,0 +1,39 @@
+---
+// Inline SVG from a recorded series. The caption, written by Atlas,
+// states the figures the chart shows; the SVG itself is hidden from
+// assistive technology and carries no number.
+import { line, strip } from "../lib/chart.mjs";
+const { series } = Astro.props;
+const g = series.kind === "strip"
+  ? strip(series.points, { log: series.log, mark: series.mark, highlight: series.highlight ?? [] })
+  : line(series.points);
+---
+{g && (
+  <figure class={`chart ${series.kind}`}>
+    {series.kind === "strip" ? (
+      <svg viewBox={`0 0 ${g.w} ${g.h}`} preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        {g.bars.map((b) => <rect class={b.cls} x={b.x} y={b.y} width={b.w} height={b.h} />)}
+        {g.markX && <line class="mark" x1={g.markX} x2={g.markX} y1="0" y2={g.h} />}
+      </svg>
+    ) : (
+      <svg viewBox={`0 0 ${g.w} ${g.h}`} preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path class="ln" d={g.d} />
+        <path class="dot" d={`M${g.last.x} ${g.last.y}h0`} />
+      </svg>
+    )}
+    <figcaption><span class="lab">{series.label}.</span> {series.caption}</figcaption>
+  </figure>
+)}
+
+<style>
+  .chart{margin:0;min-width:0;display:flex;flex-direction:column}
+  svg{display:block;width:100%;height:64px;overflow:visible}
+  .strip svg{height:128px}
+  .ln{fill:none;stroke:var(--c-chart);stroke-width:var(--chart-stroke);stroke-linejoin:round;vector-effect:non-scaling-stroke}
+  .dot{stroke:var(--c-accent);stroke-width:7;stroke-linecap:round;vector-effect:non-scaling-stroke}
+  rect.below{fill:var(--c-chart-muted)} rect.above{fill:var(--c-chart-above)} rect.hi{fill:var(--c-accent)}
+  rect.zero{fill:var(--c-fg-3)}
+  .mark{stroke:var(--c-accent);stroke-width:1.5;stroke-dasharray:3 3;vector-effect:non-scaling-stroke}
+  figcaption{margin-top:var(--space-2);font-size:var(--size-s);color:var(--c-fg-2);line-height:1.45}
+  .lab{color:var(--c-fg);font-weight:600}
+</style>

@@ -1,0 +1,22 @@
+{
+ "schema": "subnt/1.0",
+ "kind": "section",
+ "composed_at": "2026-09-23T07:48:53Z",
+ "block": 9128722,
+ "section": "movers",
+ "question": "Which subnets moved, and which crossed the bar?",
+ "lead": "No subnet crossed a mover threshold in this window.",
+ "access": "public",
+ "blocks": [
+  {
+   "id": "board",
+   "access": "public",
+   "facts": [],
+   "notes": [
+    "High deregistration risk: SN6, SN27, SN42, SN45, SN55, SN84, SN106, SN109.",
+    "Ownership contested or takeover-eligible: SN1, SN2, SN3, SN6, SN8, SN9, SN10, SN14."
+   ],
+   "gaps": []
+  }
+ ]
+}

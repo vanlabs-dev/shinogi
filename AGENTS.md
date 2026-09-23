@@ -7,6 +7,31 @@ static dump it publishes. No chain calls, no keys, no backend from here.
 
 Operator: `vaNlabs` / GitHub `vanlabs-dev`. Personal, not work.
 
+## Branch `v2` (in progress, change `openspec/changes/subnt-v2/`)
+
+`main` is still v1: Atlas writes `index.html`, blank build command. The
+facts below describe `main`. Branch `v2` holds the replacement:
+
+- Astro static build (`npm ci && npm run build`, output `dist/`). One
+  page at `/`, mobile first, in-page section links, detail in
+  `<details>`. No client framework; one inline sort script.
+- Atlas writes `data/*.json` (schema `schema/subnt-1.0.json`); this repo
+  never writes `data/`. The page lays out what it is given and computes
+  no figure. Unsupported major schema, a leak, mixed editions or a
+  subscriber block with content fail the build.
+- Access levels: every section and block is `public` or `subscriber`.
+  Subscriber blocks carry a shape only; placeholder text is generated
+  here. v2 ships all `public`.
+- Tokens: `src/styles/tokens.json`, light and dark by device setting.
+  Font: self-hosted Inter variable latin subset, `public/fonts/`.
+- Tests: `npm test` (node:test; builds fixtures in `tests/fixtures/`,
+  needs Chromium at `/usr/bin/chromium` for the 360 px check). The v1
+  pytest contract stays until cutover.
+- Off the page and out of `data/`: the same list as v1 below.
+- No em dashes, in data or page.
+
+Cutover is not done: see `tasks.md` section 5.
+
 ## Standing (2026-09-22)
 
 **Live at `https://subnt.dev`.** Repository, publisher and domain rename

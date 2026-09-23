@@ -1,0 +1,31 @@
+---
+// Subscriber block for a public reader. The data carries a shape only;
+// every string below is generated here and is not a recorded fact.
+// Placeholder figures use letters, never digits, so no placeholder can
+// be mistaken for (or checked as) a recorded number.
+const { block } = Astro.props;
+const { facts = 0, rows = 0, series = 0 } = block.shape;
+const n = (k) => Array.from({ length: k }, (_, i) => i);
+---
+<div class="sub" role="group" aria-label="Subscriber section">
+  <p class="label">Subscriber section{block.title ? `: ${block.title}` : ""}</p>
+  <div class="blur" aria-hidden="true" inert>
+    {facts > 0 && <div class="stats">{n(facts).map(() => <div class="ph-stat"><span>Figure</span><b>x.xx</b></div>)}</div>}
+    {series > 0 && n(series).map(() => <div class="ph-chart"></div>)}
+    {rows > 0 && <ul>{n(rows).map(() => <li><b>SN xx</b><span>subscriber row</span></li>)}</ul>}
+  </div>
+</div>
+
+<style>
+  .sub{position:relative;border:1px dashed var(--c-line);border-radius:var(--radius-m);padding:var(--space-4)}
+  .label{margin:0 0 var(--space-3);font-size:var(--size-s);font-weight:600;color:var(--c-accent)}
+  .blur{filter:blur(5px);user-select:none;pointer-events:none}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(8rem,1fr));gap:var(--space-3);margin-bottom:var(--space-3)}
+  .ph-stat{background:var(--c-surface-2);border-radius:var(--radius-s);padding:var(--space-3);display:flex;flex-direction:column}
+  .ph-stat b{font-size:var(--size-stat)}
+  .ph-chart{height:56px;background:var(--c-surface-2);border-radius:var(--radius-s);margin-bottom:var(--space-3)}
+  ul{margin:0;padding:0;list-style:none}
+  li{display:flex;gap:var(--space-3);padding:var(--space-2) 0;border-top:1px solid var(--c-line)}
+  li:first-child{border-top:0}
+  @media (prefers-reduced-motion:no-preference){.blur{transition:filter .2s}}
+</style>

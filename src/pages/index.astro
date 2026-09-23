@@ -1,0 +1,71 @@
+---
+// The one view. Every figure comes from data/ as Atlas wrote it.
+import path from "node:path";
+import { loadData, asofLine, SECTIONS } from "../lib/load.mjs";
+import { tokenCss } from "../styles/tokens.mjs";
+import Section from "../components/Section.astro";
+import SectionBar from "../components/SectionBar.astro";
+import "../styles/base.css";
+
+const dataDir = path.resolve(process.cwd(), process.env.SUBNT_DATA || "data");
+const data = loadData(dataDir); // throws, and so fails the build, on bad data
+const asof = asofLine(data);
+const headline = data.empty
+  ? "The page awaits the first Atlas publish. Every section names its missing input until then."
+  : data.edition.headline ?? null;
+const TAGLINE = "A lean read on Bittensor subnets";
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SUBNT · {TAGLINE}</title>
+  <meta name="description" content={`${TAGLINE}. One page, every figure recorded by Atlas.`}>
+  <meta name="color-scheme" content="light dark">
+  <link rel="preload" href="/fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+  <style is:inline set:html={tokenCss()}></style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="mast">
+      <h1>SUBNT</h1>
+      <p class="tag">{TAGLINE}</p>
+      <div class="asof">{asof}</div>
+    </header>
+    <SectionBar sections={SECTIONS} />
+    <main>
+      {headline && <p class="headline">{headline}</p>}
+      {SECTIONS.map((s) => <Section meta={s} doc={data.sections[s.id]} />)}
+    </main>
+    <footer>
+      <p>subnt.dev · public read-only · data from Atlas · every figure traces to a recorded row</p>
+    </footer>
+  </div>
+  <script is:inline>
+    // Reorders rows already in the document. Creates no figure, reads no
+    // network. Without it the rows stay in published order.
+    document.querySelectorAll("[data-sort-for]").forEach(function (tools) {
+      var list = document.getElementById(tools.getAttribute("data-sort-for"));
+      if (!list) return;
+      tools.hidden = false;
+      tools.addEventListener("click", function (e) {
+        var b = e.target.closest("button");
+        if (!b) return;
+        var order = b.getAttribute("data-order");
+        var rows = Array.prototype.slice.call(list.children);
+        rows.sort(function (x, y) {
+          if (order === "desc") {
+            return Math.abs(+y.dataset.sort || 0) - Math.abs(+x.dataset.sort || 0);
+          }
+          return +x.dataset.i - +y.dataset.i;
+        });
+        rows.forEach(function (r) { list.appendChild(r); });
+        tools.querySelectorAll("button").forEach(function (o) {
+          o.setAttribute("aria-pressed", String(o === b));
+        });
+      });
+    });
+  </script>
+</body>
+</html>
