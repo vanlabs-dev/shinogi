@@ -1,0 +1,12 @@
+// Workers static hosting for subnt.dev. Assets only: no Worker script.
+// Pinning this stops Wrangler auto-configuring an Astro adapter, which
+// changes the build and skips data/.
+{
+  "name": "subnt",
+  "compatibility_date": "2026-09-21",
+  "build": { "command": "npm run build" },
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}
