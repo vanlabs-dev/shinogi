@@ -1,11 +1,11 @@
 {
  "schema": "subnt/1.0",
  "kind": "section",
- "composed_at": "2026-09-23T15:49:36Z",
- "block": 9131136,
+ "composed_at": "2026-09-25T23:08:06Z",
+ "block": 9147901,
  "section": "attention",
  "question": "Which subnets deserve a closer read, and why?",
- "lead": "10 subnets deserve a closer read; most are priced ahead of a repository that has gone quiet.",
+ "lead": "10 subnets deserve a closer read; 5 share one reason: priced ahead of a repository that has gone quiet.",
  "access": "public",
  "blocks": [
   {
@@ -16,7 +16,27 @@
    "gaps": [],
    "groups": [
     {
-     "label": "priced ahead of a repository that has gone quiet",
+     "label": "building faster than the price reflects: 3 subnets",
+     "rows": [
+      {
+       "netuid": 25,
+       "name": "UR",
+       "summary": "building faster than the price reflects"
+      },
+      {
+       "netuid": 66,
+       "name": "conjectures",
+       "summary": "building faster than the price reflects"
+      },
+      {
+       "netuid": 71,
+       "name": "Leadpoet",
+       "summary": "building faster than the price reflects"
+      }
+     ]
+    },
+    {
+     "label": "priced ahead of a repository that has gone quiet: 5 subnets",
      "rows": [
       {
        "netuid": 29,
@@ -29,13 +49,8 @@
        "summary": "priced ahead of a repository that has gone quiet"
       },
       {
-       "netuid": 52,
-       "name": "Dojo",
-       "summary": "priced ahead of a repository that has gone quiet"
-      },
-      {
-       "netuid": 48,
-       "name": "Quantum Compute",
+       "netuid": 5,
+       "name": "Hone",
        "summary": "priced ahead of a repository that has gone quiet"
       },
       {
@@ -44,38 +59,28 @@
        "summary": "priced ahead of a repository that has gone quiet"
       },
       {
-       "netuid": 19,
-       "name": "blockmachine",
-       "summary": "priced ahead of a repository that has gone quiet"
-      },
-      {
-       "netuid": 64,
-       "name": "Chutes",
-       "summary": "priced ahead of a repository that has gone quiet"
-      },
-      {
-       "netuid": 128,
-       "name": "ByteLeap",
+       "netuid": 48,
+       "name": "Quantum Compute",
        "summary": "priced ahead of a repository that has gone quiet"
       }
      ]
     },
     {
-     "label": "building faster than the price reflects",
+     "label": "emission routed away from miners: 1 subnet",
      "rows": [
       {
-       "netuid": 25,
-       "name": "UR",
-       "summary": "building faster than the price reflects"
+       "netuid": 54,
+       "name": "Yanez",
+       "summary": "emission routed away from miners"
       }
      ]
     },
     {
-     "label": "branch activity spiked this pass",
+     "label": "branch activity spiked this pass: 1 subnet",
      "rows": [
       {
-       "netuid": 51,
-       "name": "lium.io",
+       "netuid": 7,
+       "name": "Allways",
        "summary": "branch activity spiked this pass"
       }
      ]

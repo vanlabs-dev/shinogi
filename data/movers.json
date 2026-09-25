@@ -1,11 +1,11 @@
 {
  "schema": "subnt/1.0",
  "kind": "section",
- "composed_at": "2026-09-23T15:49:36Z",
- "block": 9131136,
+ "composed_at": "2026-09-25T23:08:06Z",
+ "block": 9147901,
  "section": "movers",
  "question": "Which subnets moved, and which crossed the bar?",
- "lead": "SN44 moved -76.0% on demand share in this window.",
+ "lead": "SN38 moved +86.7% on demand share in this window.",
  "access": "public",
  "blocks": [
   {
@@ -14,11 +14,12 @@
    "facts": [
     {
      "id": "lead-mover",
-     "label": "SN44 demand share",
-     "text": "-76.0%",
+     "label": "SN38 demand share",
+     "text": "+86.7%",
+     "value": 86.7,
+     "unit": "%",
      "headline": true,
-     "freshness": "3.7042% at block 9130536 to 0.8886% at block 9131136",
-     "delta": null
+     "freshness": "1.2651% at block 9130536 to 2.3624% at block 9147901"
     }
    ],
    "notes": [],
@@ -27,23 +28,23 @@
     {
      "id": "lead-mover-trend",
      "kind": "line",
-     "label": "SN44 demand share",
-     "caption": "SN44 demand share, 3.7042% at block 9130536 to 0.8886% at block 9131136.",
+     "label": "SN38 demand share",
+     "caption": "SN38 demand share over the last 14 readings, from 1.8177% to 2.3624%.",
      "points": [
-      0.037232579548908386,
-      0.037182743859687076,
-      0.037170180089479615,
-      0.03717162569674252,
-      0.037137401284826864,
-      0.037168490687072724,
-      0.037133064122686014,
-      0.03708544500534271,
-      0.037112853694182824,
-      0.03706844350202796,
-      0.037074198352668904,
-      0.03704217287150843,
-      0.03555624090994595,
-      0.008886252807237729
+      0.018177181834096293,
+      0.01816412618804161,
+      0.01848891891337566,
+      0.019053344905917508,
+      0.019461467665459,
+      0.02078843073338353,
+      0.021126428716502978,
+      0.021372917727758723,
+      0.02178321179292751,
+      0.022379307214944803,
+      0.0224692885894541,
+      0.022848101738706328,
+      0.02318569275996846,
+      0.023623772058463346
      ]
     }
    ]
@@ -53,7 +54,7 @@
    "access": "public",
    "facts": [],
    "notes": [
-    "High deregistration risk: SN6, SN27, SN42, SN55, SN84, SN98, SN106, SN109.",
+    "High deregistration risk: SN6, SN20, SN27, SN42, SN65, SN106, SN109, SN119.",
     "Ownership contested or takeover-eligible: SN1, SN2, SN3, SN6, SN8, SN9, SN10, SN14."
    ],
    "gaps": [],
@@ -62,16 +63,142 @@
     "sortable": true,
     "items": [
      {
-      "netuid": 44,
-      "name": null,
-      "summary": "demand share",
-      "figure": "-76.0%",
-      "sort": -76.0,
+      "netuid": 76,
+      "name": "Ormas",
+      "summary": "alpha price",
+      "figure": "+84.4%",
+      "sort": 84.4,
       "detail": [
        {
         "id": "move",
         "label": "Reading",
-        "text": "SN44 demand share -76.0%, from 3.7042% at block 9130536 to 0.8886% at block 9131136."
+        "text": "SN76 alpha price +84.4%, from 0.00251 TAO at block 9130536 to 0.00463 TAO at block 9147901."
+       }
+      ]
+     },
+     {
+      "netuid": 38,
+      "name": "ChronoLLM",
+      "summary": "alpha price",
+      "figure": "+78.5%",
+      "sort": 78.5,
+      "detail": [
+       {
+        "id": "move",
+        "label": "Reading",
+        "text": "SN38 alpha price +78.5%, from 0.01191 TAO at block 9130536 to 0.02126 TAO at block 9147901."
+       }
+      ]
+     },
+     {
+      "netuid": 36,
+      "name": "Epago",
+      "summary": "alpha price",
+      "figure": "-40.0%",
+      "sort": -40.0,
+      "detail": [
+       {
+        "id": "move",
+        "label": "Reading",
+        "text": "SN36 alpha price -40.0%, from 0.01289 TAO at block 9130536 to 0.00774 TAO at block 9147901."
+       }
+      ]
+     },
+     {
+      "netuid": 23,
+      "name": "Trishool",
+      "summary": "alpha price",
+      "figure": "+27.6%",
+      "sort": 27.6,
+      "detail": [
+       {
+        "id": "move",
+        "label": "Reading",
+        "text": "SN23 alpha price +27.6%, from 0.00424 TAO at block 9130536 to 0.00540 TAO at block 9147901."
+       }
+      ]
+     },
+     {
+      "netuid": 70,
+      "name": "ghayn",
+      "summary": "alpha price",
+      "figure": "-20.7%",
+      "sort": -20.7,
+      "detail": [
+       {
+        "id": "move",
+        "label": "Reading",
+        "text": "SN70 alpha price -20.7%, from 0.00224 TAO at block 9130536 to 0.00178 TAO at block 9147901."
+       }
+      ]
+     },
+     {
+      "netuid": 102,
+      "name": "ConnitoAI",
+      "summary": "alpha price",
+      "figure": "+18.4%",
+      "sort": 18.4,
+      "detail": [
+       {
+        "id": "move",
+        "label": "Reading",
+        "text": "SN102 alpha price +18.4%, from 0.00535 TAO at block 9130536 to 0.00633 TAO at block 9147901."
+       }
+      ]
+     },
+     {
+      "netuid": 38,
+      "name": "ChronoLLM",
+      "summary": "demand share",
+      "figure": "+86.7%",
+      "sort": 86.7,
+      "detail": [
+       {
+        "id": "move",
+        "label": "Reading",
+        "text": "SN38 demand share +86.7%, from 1.2651% at block 9130536 to 2.3624% at block 9147901."
+       }
+      ]
+     },
+     {
+      "netuid": 76,
+      "name": "Ormas",
+      "summary": "demand share",
+      "figure": "+62.2%",
+      "sort": 62.2,
+      "detail": [
+       {
+        "id": "move",
+        "label": "Reading",
+        "text": "SN76 demand share +62.2%, from 0.2669% at block 9130536 to 0.4329% at block 9142231."
+       }
+      ]
+     },
+     {
+      "netuid": 28,
+      "name": "SayGM",
+      "summary": "demand share",
+      "figure": "+51.2%",
+      "sort": 51.2,
+      "detail": [
+       {
+        "id": "move",
+        "label": "Reading",
+        "text": "SN28 demand share +51.2%, from 1.3112% at block 9130536 to 1.9829% at block 9147901."
+       }
+      ]
+     },
+     {
+      "netuid": 81,
+      "name": "Reliquary",
+      "summary": "demand share",
+      "figure": "+41.4%",
+      "sort": 41.4,
+      "detail": [
+       {
+        "id": "move",
+        "label": "Reading",
+        "text": "SN81 demand share +41.4%, from 0.0774% at block 9130536 to 0.1094% at block 9147901."
        }
       ]
      }
