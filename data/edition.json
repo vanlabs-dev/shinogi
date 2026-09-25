@@ -1,9 +1,9 @@
 {
  "schema": "subnt/1.0",
  "kind": "edition",
- "composed_at": "2026-09-25T23:08:06Z",
+ "composed_at": "2026-09-25T23:08:13Z",
  "block": 9147901,
  "first_edition": false,
- "previous_composed_at": "2026-09-23T12:56:09Z",
- "headline": "SN38 moved +86.7% on demand share in this window."
+ "previous_composed_at": "2026-09-25T23:08:13Z",
+ "headline": "The bar held at 0.00866 and no subnet crossed it."
 }

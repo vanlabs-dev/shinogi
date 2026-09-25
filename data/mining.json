@@ -1,7 +1,7 @@
 {
  "schema": "subnt/1.0",
  "kind": "section",
- "composed_at": "2026-09-25T23:08:06Z",
+ "composed_at": "2026-09-25T23:08:13Z",
  "block": 9147901,
  "section": "mining",
  "question": "Where is mining worth a look now?",
@@ -29,7 +29,7 @@
     }
    ],
    "notes": [
-    "Top-ten changes are not compared: the mining model changed since the last publish."
+    "The top ten is unchanged since the last publish."
    ],
    "gaps": [],
    "rows": {

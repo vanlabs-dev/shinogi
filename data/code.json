@@ -1,7 +1,7 @@
 {
  "schema": "subnt/1.0",
  "kind": "section",
- "composed_at": "2026-09-25T23:08:06Z",
+ "composed_at": "2026-09-25T23:08:13Z",
  "block": 9147901,
  "section": "code-narrative",
  "question": "Where is code shipping, and what is being adopted?",
@@ -20,19 +20,11 @@
      "value": 50,
      "headline": true,
      "freshness": "tracked subnets",
-     "delta": {
-      "text": "-7.4% since last publish",
-      "direction": "down"
-     }
+     "delta": null
     }
    ],
    "notes": [
-    "SN54, When UAV data is missing and the partner is on mainnet, the unused UAV share now goes to t, at commit a0218c09a7a9.",
-    "SN66, Adds a new scoring pipeline: 60% of weight to Pareto-frontier position, 40% to decaying re, at commit 589a94f2aba8.",
-    "SN7, Miner pool now gives each scoring family (sol, tao, alpha) an equal share, with alpha pair, at commit 7e1e6d18fca2.",
-    "SN69, Subnet 69 swaps per-miner USD-proportional weights for a vector limited to burn UID 0 and , at commit 65be48580316.",
-    "4 material incentive-code changes and 13 of middling significance in the window.",
-    "SN46 re-pointed its repository (epoch 3)."
+    "0 material incentive-code changes and 0 of middling significance in the window."
    ],
    "gaps": []
   },
@@ -42,12 +34,7 @@
    "title": "Narrative",
    "facts": [],
    "notes": [
-    "Model dendriteholdings/albedo-qwen3.6-35b-king-cxxvii adopted by SN120.",
-    "Model qwen/qwen2.5-omni-7b adopted by SN20.",
-    "Model qwen2.5-omni adopted by SN20.",
-    "Model qwen2.5-omni-7b adopted by SN20.",
-    "Model qwen2.5-omni-processor-1 adopted by SN20.",
-    "Model qwen2.5-omni-thinker adopted by SN20."
+    "No model-identifier adoption and no cluster formed in this window."
    ],
    "gaps": []
   }
