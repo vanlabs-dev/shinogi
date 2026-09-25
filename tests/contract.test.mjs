@@ -14,7 +14,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const FIX = path.join(ROOT, "tests", "fixtures");
 const TMP = fs.mkdtempSync(path.join(process.env.TMPDIR || os.tmpdir(), "subnt-test-"));
 const SECTION_IDS = ["network", "movers", "mining", "attention", "code-narrative"];
-const ASOF = /^as of \d{4}-\d{2}-\d{2} \d{2}:\d{2} UTC \u00b7 block (\d+|not recorded)$/;
+const ASOF = /^Updated \d{4}-\d{2}-\d{2} \d{2}:\d{2} UTC \u00b7 block (\d+|not recorded)$/;
 const DATA_FETCH = ["fetch(", "XMLHttpRequest", "EventSource", "WebSocket",
   "navigator.sendBeacon", "import(", "@import"];
 const BUDGET = { html: 120 * 1024, js: 15 * 1024, font: 60 * 1024 };
@@ -66,7 +66,7 @@ test("five landmarks in contract order, with and without data", () => {
   for (const b of Object.values(B)) assert.deepEqual(ids(read(b.out)), SECTION_IDS);
 });
 
-test("masthead: wordmark, tagline, as-of line", () => {
+test("masthead: wordmark, tagline, updated line", () => {
   for (const b of [B.sample, B.mover]) {
     const h = read(b.out);
     assert.deepEqual(tagText(h, /<h1\b[^>]*>([\s\S]*?)<\/h1>/g), ["SUBNT"]);
@@ -74,6 +74,7 @@ test("masthead: wordmark, tagline, as-of line", () => {
     const asof = tagText(h, /<div class="asof"[^>]*>([\s\S]*?)<\/div>/g);
     assert.equal(asof.length, 1);
     assert.match(asof[0], ASOF);
+    assert.match(h, /<time datetime="\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z" data-ago>/);
   }
 });
 
@@ -91,7 +92,7 @@ test("no data: page builds, awaits first publish, every section names its gap", 
   const h = read(B.empty.out);
   const asof = tagText(h, /<div class="asof"[^>]*>([\s\S]*?)<\/div>/g)[0];
   assert.equal(asof, "awaiting first Atlas publish");
-  assert.ok(!/as of \d/.test(h) && !/block \d/.test(h));
+  assert.ok(!/Updated \d/.test(h) && !/block \d/.test(h) && !/<time\b/.test(h));
   const leads = tagText(h, /<p class="lead"[^>]*>([\s\S]*?)<\/p>/g);
   assert.equal(leads.length, 5);
   for (const l of leads) assert.match(l, /^Missing /);

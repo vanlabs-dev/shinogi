@@ -111,9 +111,15 @@ export function asofTime(iso) {
   return m ? `${m[1]} ${m[2]} UTC` : null;
 }
 
+// { iso, time, block } for the masthead, or null before the first publish.
+// The page script rewrites the time as "N hours and M minutes ago"; with
+// scripting off the recorded UTC time stays.
 export function asofLine(data) {
-  if (data.empty) return "awaiting first Atlas publish";
-  const t = asofTime(data.edition.composed_at);
+  if (data.empty) return null;
   const b = data.edition.block;
-  return `as of ${t} \u00b7 block ${b == null ? "not recorded" : b}`;
+  return {
+    iso: data.edition.composed_at,
+    time: asofTime(data.edition.composed_at),
+    block: b == null ? "not recorded" : String(b),
+  };
 }

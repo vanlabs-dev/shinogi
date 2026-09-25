@@ -46,9 +46,12 @@ already in the document.
 The page SHALL open with a masthead containing the wordmark `SUBNT`,
 the tagline `A lean read on Bittensor subnets`, and an as-of line.
 
-The as-of line SHALL be `as of <time> · block <n>`, where `<time>` and
+The as-of line SHALL be `Updated <time> · block <n>`, where `<time>` and
 `<n>` are the compose time and block recorded in the published data
-files. When the block is missing from the data, the as-of line SHALL
+files. In the document `<time>` is the UTC compose time in a `<time>`
+element. A presentation script MAY rewrite it as the edition's age in
+words (`3 hours and 11 minutes ago`) from the reader's clock, with the
+compose time in the reader's timezone as its tooltip. When the block is missing from the data, the as-of line SHALL
 name the gap and SHALL omit a block number. When no data files have
 been published, the page SHALL state that it awaits the first Atlas
 publish and SHALL NOT invent a time or block.
@@ -56,8 +59,9 @@ publish and SHALL NOT invent a time or block.
 #### Scenario: Published data with a block
 
 - **WHEN** the data files carry a compose time and block
-- **THEN** the masthead shows `as of` that UTC time and `block`
+- **THEN** the masthead shows `Updated` that UTC time and `block`
   followed by that number
+- **AND** with scripting on, the time reads as the edition's age
 
 #### Scenario: Published data with no block
 

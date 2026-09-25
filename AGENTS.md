@@ -80,7 +80,8 @@ break that ordering under daylight saving.
 Cadence is 6h, not hourly, and the gate
 hashes the facts with the as-of line normalised out, so an edition whose
 figures have not moved is not republished at all. An Atlas edition must
-show `as of <time> · block <n>`. A failed push leaves the last deploy live.
+show `Updated <time> · block <n>`
+(the page script turns the time into "3 hours and 11 minutes ago"). A failed push leaves the last deploy live.
 
 ## Repo
 

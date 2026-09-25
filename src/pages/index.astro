@@ -42,7 +42,9 @@ const TAGLINE = "A lean read on Bittensor subnets";
     <header class="mast">
       <h1>SUBNT</h1>
       <p class="tag">{TAGLINE}</p>
-      <div class="asof">{asof}</div>
+      <div class="asof">{asof
+        ? <>Updated <time datetime={asof.iso} data-ago>{asof.time}</time> · block {asof.block}</>
+        : "awaiting first Atlas publish"}</div>
     </header>
     <SectionBar sections={SECTIONS} />
     <main>
@@ -59,6 +61,25 @@ const TAGLINE = "A lean read on Bittensor subnets";
     </footer>
   </div>
   <script is:inline>
+    // Shows the edition's age in words, from the recorded compose time and
+    // the reader's clock. The recorded time moves to the tooltip, in the
+    // reader's own timezone.
+    document.querySelectorAll("time[data-ago]").forEach(function (t) {
+      var at = Date.parse(t.getAttribute("datetime"));
+      if (isNaN(at)) return;
+      t.title = new Date(at).toLocaleString();
+      var n = function (k, w) { return k + " " + w + (k === 1 ? "" : "s"); };
+      function tick() {
+        var m = Math.max(0, Math.floor((Date.now() - at) / 60000));
+        var d = Math.floor(m / 1440), h = Math.floor((m % 1440) / 60), mi = m % 60;
+        t.textContent = m < 1 ? "just now"
+          : d ? n(d, "day") + (h ? " and " + n(h, "hour") : "") + " ago"
+          : h ? n(h, "hour") + (mi ? " and " + n(mi, "minute") : "") + " ago"
+          : n(mi, "minute") + " ago";
+      }
+      tick();
+      setInterval(tick, 60000);
+    });
     // Reorders rows already in the document. Creates no figure, reads no
     // network. Without it the rows stay in published order.
     document.querySelectorAll("[data-sort-for]").forEach(function (tools) {
