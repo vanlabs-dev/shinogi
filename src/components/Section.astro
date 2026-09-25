@@ -3,7 +3,7 @@
 // With no data the lead names the gap and no figures follow.
 import Block from "./Block.astro";
 import Placeholder from "./Placeholder.astro";
-const { meta, doc } = Astro.props;
+const { meta, doc, flags, skip } = Astro.props;
 const lead = doc ? doc.lead : `Missing ${meta.title.toLowerCase()} facts: Atlas has not published this section yet.`;
 ---
 <section id={meta.id} aria-labelledby={`${meta.id}-h`} data-access={doc?.access ?? "public"}>
@@ -14,15 +14,15 @@ const lead = doc ? doc.lead : `Missing ${meta.title.toLowerCase()} facts: Atlas 
   <p class="lead">{lead}</p>
   {doc && (doc.access === "subscriber"
     ? doc.blocks.map((b) => <Placeholder block={b} />)
-    : <div class="blocks">{doc.blocks.map((b) => <Block block={b} section={meta.id} />)}</div>)}
+    : <div class="blocks">{doc.blocks.map((b) => <Block block={b} section={meta.id} flags={flags} skip={skip} />)}</div>)}
 </section>
 
 <style>
-  section{padding:var(--space-6) 0;border-top:1px solid var(--c-line);scroll-margin-top:var(--space-8);min-width:0}
+  section{padding:var(--space-5) 0;border-top:1px solid var(--c-line);scroll-margin-top:var(--space-8);min-width:0}
   header{display:flex;flex-direction:column;gap:var(--space-1);margin-bottom:var(--space-3)}
   h2{margin:0;font-size:var(--size-xs);text-transform:uppercase;letter-spacing:.14em;color:var(--c-accent);font-weight:700}
   .q{margin:0;font-size:var(--size-s);color:var(--c-fg-2)}
-  .lead{margin:0 0 var(--space-5);font-size:var(--size-l);line-height:1.4;font-weight:550;letter-spacing:-.01em;max-width:62ch;overflow-wrap:anywhere}
+  .lead{margin:0 0 var(--space-4);font-size:var(--size-m);line-height:1.5;font-weight:500;letter-spacing:-.01em;max-width:62ch;overflow-wrap:anywhere}
   .blocks{display:flex;flex-direction:column;gap:var(--space-6)}
   #code-narrative .blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr));gap:var(--space-6)}
 </style>

@@ -6,7 +6,7 @@
 
 ## 2. Design
 
-- [ ] 2.1 Make 2 or 3 throwaway mockups at 360 px and 1280 px with real sample data; pick one
+- [x] 2.1 Make 2 or 3 throwaway mockups at 360 px and 1280 px with real sample data; pick one (2026-09-26: Board with Briefing, stat tiles with sparks, section leads, note lists as chips and row tags)
 - [x] 2.2 Choose the typeface and subset it; confirm it fits the font budget
 - [x] 2.3 Write design tokens (colour, type scale, spacing, radius, chart style) for light and dark; check AA contrast
 

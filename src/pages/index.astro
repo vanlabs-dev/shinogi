@@ -5,6 +5,8 @@ import { loadData, asofLine, SECTIONS } from "../lib/load.mjs";
 import { tokenCss } from "../styles/tokens.mjs";
 import Section from "../components/Section.astro";
 import SectionBar from "../components/SectionBar.astro";
+import Chart from "../components/Chart.astro";
+import { flagMap } from "../lib/flags.mjs";
 import "../styles/base.css";
 
 const dataDir = path.resolve(process.cwd(), process.env.SUBNT_DATA || "data");
@@ -13,6 +15,15 @@ const asof = asofLine(data);
 const headline = data.empty
   ? "The page awaits the first Atlas publish. Every section names its missing input until then."
   : data.edition.headline ?? null;
+// The lead mover's trend opens the page beside the headline; the movers
+// section then skips it so it draws once.
+const movers = data.sections.movers;
+const heroSeries = movers?.access === "public"
+  ? movers.blocks.filter((b) => b.access === "public")
+      .flatMap((b) => b.series ?? []).find((s) => s.kind === "line") ?? null
+  : null;
+const skip = new Set(heroSeries ? [heroSeries.id] : []);
+const flags = flagMap(data.sections);
 const TAGLINE = "A lean read on Bittensor subnets";
 ---
 <!doctype html>
@@ -35,8 +46,13 @@ const TAGLINE = "A lean read on Bittensor subnets";
     </header>
     <SectionBar sections={SECTIONS} />
     <main>
-      {headline && <p class="headline">{headline}</p>}
-      {SECTIONS.map((s) => <Section meta={s} doc={data.sections[s.id]} />)}
+      {headline && (
+        <div class="hero">
+          <p class="headline">{headline}</p>
+          {heroSeries && <Chart series={heroSeries} hero />}
+        </div>
+      )}
+      {SECTIONS.map((s) => <Section meta={s} doc={data.sections[s.id]} flags={flags} skip={skip} />)}
     </main>
     <footer>
       <p>subnt.dev · public read-only · data from Atlas · every figure traces to a recorded row</p>
