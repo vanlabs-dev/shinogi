@@ -1,11 +1,11 @@
 {
  "schema": "subnt/1.0",
  "kind": "section",
- "composed_at": "2026-09-25T23:08:13Z",
- "block": 9147901,
+ "composed_at": "2026-09-26T00:21:33Z",
+ "block": 9148191,
  "section": "mining",
  "question": "Where is mining worth a look now?",
- "lead": "SN4, Targon, heads the mining board; 64 of 128 observed subnets rank.",
+ "lead": "SN4 Targon has the largest earnable pool for a new independent miner; 64 of 128 observed subnets rank.",
  "access": "public",
  "blocks": [
   {
@@ -21,7 +21,7 @@
     },
     {
      "id": "head",
-     "label": "Board head",
+     "label": "Largest earnable pool",
      "text": "SN4",
      "value": 4,
      "headline": true,
@@ -29,11 +29,12 @@
     }
    ],
    "notes": [
+    "Ranked by estimated earnings for a new independent miner. Hardware cost and hardware requirements are not counted.",
     "The top ten is unchanged since the last publish."
    ],
    "gaps": [],
    "rows": {
-    "label": "Top ten on the mining board",
+    "label": "Top ten by earnable pool",
     "sortable": false,
     "items": [
      {

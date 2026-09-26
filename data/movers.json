@@ -1,10 +1,10 @@
 {
  "schema": "subnt/1.0",
  "kind": "section",
- "composed_at": "2026-09-25T23:08:13Z",
- "block": 9147901,
+ "composed_at": "2026-09-26T00:21:33Z",
+ "block": 9148191,
  "section": "movers",
- "question": "Which subnets moved, and which crossed the bar?",
+ "question": "Which subnets moved, and which sit near the cut?",
  "lead": "No subnet crossed a mover threshold in this window.",
  "access": "public",
  "blocks": [
@@ -14,8 +14,7 @@
    "facts": [],
    "notes": [
     "No subnet crossed a mover threshold in this window.",
-    "High deregistration risk: SN6, SN20, SN27, SN42, SN65, SN106, SN109, SN119.",
-    "Ownership contested or takeover-eligible: SN1, SN2, SN3, SN6, SN8, SN9, SN10, SN14."
+    "Closest to deregistration: SN113 LongShort, SN82 Compelle, SN47 GPUForge, SN72 StreetVision by NATIX, SN98 NeverPlayAlone."
    ],
    "gaps": []
   }

@@ -1,9 +1,9 @@
 {
  "schema": "subnt/1.0",
  "kind": "edition",
- "composed_at": "2026-09-25T23:08:13Z",
- "block": 9147901,
+ "composed_at": "2026-09-26T00:21:33Z",
+ "block": 9148191,
  "first_edition": false,
- "previous_composed_at": "2026-09-25T23:08:13Z",
- "headline": "The bar held at 0.00866 and no subnet crossed it."
+ "previous_composed_at": "2026-09-25T23:08:20Z",
+ "headline": "Emission favours the top 32 subnets by demand share; below 0.859%, a subnet's emission falls off sharply."
 }

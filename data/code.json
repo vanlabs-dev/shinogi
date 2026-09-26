@@ -1,8 +1,8 @@
 {
  "schema": "subnt/1.0",
  "kind": "section",
- "composed_at": "2026-09-25T23:08:13Z",
- "block": 9147901,
+ "composed_at": "2026-09-26T00:21:33Z",
+ "block": 9148191,
  "section": "code-narrative",
  "question": "Where is code shipping, and what is being adopted?",
  "lead": "50 of 101 tracked subnets pushed code in the last seven days.",

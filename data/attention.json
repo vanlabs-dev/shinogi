@@ -1,11 +1,11 @@
 {
  "schema": "subnt/1.0",
  "kind": "section",
- "composed_at": "2026-09-25T23:08:13Z",
- "block": 9147901,
+ "composed_at": "2026-09-26T00:21:33Z",
+ "block": 9148191,
  "section": "attention",
  "question": "Which subnets deserve a closer read, and why?",
- "lead": "10 subnets deserve a closer read; 5 share one reason: priced ahead of a repository that has gone quiet.",
+ "lead": "10 subnets deserve a closer read; 6 share one reason: priced ahead of a repository that has gone quiet.",
  "access": "public",
  "blocks": [
   {
@@ -36,7 +36,7 @@
      ]
     },
     {
-     "label": "priced ahead of a repository that has gone quiet: 5 subnets",
+     "label": "priced ahead of a repository that has gone quiet: 6 subnets",
      "rows": [
       {
        "netuid": 29,
@@ -62,26 +62,21 @@
        "netuid": 48,
        "name": "Quantum Compute",
        "summary": "priced ahead of a repository that has gone quiet"
+      },
+      {
+       "netuid": 52,
+       "name": "Dojo",
+       "summary": "priced ahead of a repository that has gone quiet"
       }
      ]
     },
     {
-     "label": "emission routed away from miners: 1 subnet",
+     "label": "miner emission burned through owner UIDs: 1 subnet",
      "rows": [
       {
        "netuid": 54,
        "name": "Yanez",
-       "summary": "emission routed away from miners"
-      }
-     ]
-    },
-    {
-     "label": "branch activity spiked this pass: 1 subnet",
-     "rows": [
-      {
-       "netuid": 7,
-       "name": "Allways",
-       "summary": "branch activity spiked this pass"
+       "summary": "61% of miner emission"
       }
      ]
     }
