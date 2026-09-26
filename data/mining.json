@@ -1,8 +1,8 @@
 {
  "schema": "subnt/1.0",
  "kind": "section",
- "composed_at": "2026-09-26T00:57:02Z",
- "block": 9148191,
+ "composed_at": "2026-09-26T06:57:27Z",
+ "block": 9150013,
  "section": "mining",
  "question": "Where is mining worth a look now?",
  "lead": "SN4 Targon has the largest earnable pool for a new independent miner; 63 of 128 observed subnets rank.",

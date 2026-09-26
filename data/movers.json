@@ -1,8 +1,8 @@
 {
  "schema": "subnt/1.0",
  "kind": "section",
- "composed_at": "2026-09-26T00:57:02Z",
- "block": 9148191,
+ "composed_at": "2026-09-26T06:57:27Z",
+ "block": 9150013,
  "section": "movers",
  "question": "Which subnets moved, and which sit near the cut?",
  "lead": "No subnet crossed a mover threshold in this window.",
