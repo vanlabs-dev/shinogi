@@ -155,7 +155,7 @@ support the section's question SHALL NOT be shown in that section.
 | Section | Question |
 |---|---|
 | Network | What changed on the network since the last edition? |
-| Subnet movers | Which subnets moved, and which crossed the bar? |
+| Subnet movers | Which subnets moved, and which sit near the cut? |
 | Mining | Where is mining worth a look now? |
 | Attention | Which subnets deserve a closer read, and why? |
 | Code / narrative | Where is code shipping, and what is being adopted? |

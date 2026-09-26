@@ -1,20 +1,18 @@
 schema: spec-driven
 
 context: |
-  subnt is the public static dump for https://subnt.dev.
-  Atlas (~/src/github/vanlabs-dev/atlas) is the worker. This repo
-  holds index.html and 404.html. No chain calls, keys, or backend here.
-  Cloudflare Workers static hosting: blank build command, deploy command
-  npx wrangler deploy, production branch main. Cadence 6h.
-  v1 is one self-contained HTML view: public pulse. No nav, accounts,
-  or articles. Compose from Atlas briefing store facts, not LAN boards.
+  subnt is the public page at https://subnt.dev.
+  Atlas (~/src/github/vanlabs-dev/atlas) is the worker and renderer.
+  No chain calls, keys, or backend here.
+  Astro static build (npm ci && npm run build, output dist/), hosted on
+  Cloudflare Workers static hosting from main; build pinned in
+  wrangler.jsonc, public/404.html is the not-found page. Cadence 6h.
+  Atlas writes data/*.json against schema/subnt-1.0.json; this repo
+  never writes data/ and computes no figure. No browser data fetch, no
+  Worker or server code. One page, mobile first, five sections.
   Off the page: wallets, keys, Telegram, Pi address, TaoStats quota,
   exploit paths, mining.budget_band, atlas/operator section.
   Gaps named, never estimated. No em dashes. IntoTAO is reference only.
-  v2 (branch v2, change subnt-v2): Astro static build, build command
-  npm ci && npm run build, output dist/. Atlas writes data/*.json against
-  schema/subnt-1.0.json; this repo never writes data/ and computes no
-  figure. No browser data fetch, no Worker or server code.
   Author: vanlabs-dev <vanlabs@pm.me>. Never add Co-Authored-By.
 
 rules:
@@ -26,7 +24,7 @@ rules:
   design:
     - Renderer stays in Atlas. This repo specifies the page and holds the published edition
   tasks:
-    - "Tasks in this repo are the contract HTML and living docs. Do not implement the Atlas renderer here."
+    - "Tasks in this repo are the page, its contract tests and living docs. Do not implement the Atlas renderer here."
 
 operations:
   apply:

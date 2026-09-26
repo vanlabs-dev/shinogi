@@ -31,9 +31,9 @@
 
 ## 5. Cutover
 
-- [ ] 5.1 Confirm Cloudflare build limits and preview URLs for the account; pick build-on-Cloudflare or build-on-Pi
+- [x] 5.1 Confirm Cloudflare build limits and preview URLs for the account; pick build-on-Cloudflare or build-on-Pi
 - [ ] 5.2 Parity check across three consecutive editions: every v1 fact appears in v2
-- [ ] 5.3 Merge `v2`, set the build command, and confirm subnt.dev serves the v2 page and unknown paths return 404
+- [x] 5.3 Merge `v2`, set the build command, and confirm subnt.dev serves the v2 page and unknown paths return 404
 - [ ] 5.4 Record the cutover and rollback steps in `docs/`
 
 Atlas work (JSON export, leak scan on JSON, schema test, removing the HTML renderer) belongs to the Atlas change `subnt-json-export`, not this repo.

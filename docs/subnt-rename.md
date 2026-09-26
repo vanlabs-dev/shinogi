@@ -4,6 +4,10 @@
 
 Repository, publisher and domain cutover complete. `https://subnt.dev` is live.
 
+This record describes the v1 page as of 2026-09-22. Since 2026-09-26 the
+repo has no root `index.html` and no pytest contract: validate the page
+with `npm test` and preview with `compose --out <dir>`.
+
 - GitHub repository and workstation directory are `subnt`; both workstation
   and device remotes use `git@github.com:vanlabs-dev/subnt.git`.
 - Source commits pushed: public page `b37d0f5`, Atlas `1c75b88`.

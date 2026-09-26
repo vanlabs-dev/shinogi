@@ -2,32 +2,34 @@
 
 ## Purpose
 
-Defines the public subnt.dev page as one self-contained HTML pulse of
-the Bittensor network, composed from recorded store facts, with named
-gaps and no operator-only material.
+Defines the public subnt.dev page: one static page built from the data
+files Atlas publishes, laid out mobile first, with named gaps and no
+operator-only material.
 
 ## Requirements
 
 ### Requirement: One page, and the data is baked into it
 
 The published site SHALL serve a single page at `/`. The page SHALL have
-no navigation, accounts, or article list.
+no accounts, no article list, and no route to another view. In-page
+links to the page's own sections are allowed.
 
-Every figure the page reports SHALL be present in the delivered document.
-The page SHALL NOT fetch, request, or derive any reported figure in the
-browser: no `fetch`, no `XMLHttpRequest`, no `EventSource`, no WebSocket,
-no dynamic import of data. Atlas is the only writer, and a reader with
-scripting disabled SHALL still see every figure.
+Every figure the page reports SHALL be present in the delivered
+document. The page SHALL NOT fetch, request, or derive any reported
+figure in the browser: no `fetch`, no `XMLHttpRequest`, no
+`EventSource`, no WebSocket, no dynamic import of data. Atlas is the
+only writer of figures, and a reader with scripting disabled SHALL
+still see every figure.
 
-Presentation may use an external typeface and client-side script. A
-script SHALL only arrange, reveal, or annotate content already in the
-document. A stylesheet link SHALL only be a typeface source.
+Presentation may use a self-hosted typeface and client-side script. A
+script SHALL only arrange, sort, filter, reveal, or annotate content
+already in the document.
 
 #### Scenario: Root is the only view
 
 - **WHEN** a reader opens `/`
-- **THEN** one document renders the full pulse and no in-page nav to
-  other views is present
+- **THEN** one document renders the full page, and every link in it
+  points to `/`, an in-page anchor, or an external source citation
 
 #### Scenario: No data is fetched in the browser
 
@@ -38,45 +40,47 @@ document. A stylesheet link SHALL only be a typeface source.
 #### Scenario: Readable with scripting off
 
 - **WHEN** the page is rendered with JavaScript disabled
-- **THEN** every section, figure and named gap is still present and
-  legible
+- **THEN** every section, figure, named gap, and per-subnet detail is
+  still present and legible
 
-#### Scenario: A typeface may be loaded
+#### Scenario: Script only rearranges
 
-- **WHEN** the page requests an external stylesheet
-- **THEN** it is a typeface source and carries no reported data
+- **WHEN** a reader sorts or filters a subnet list
+- **THEN** the rows shown are a subset or reordering of rows already in
+  the document and no figure is created
 
 ### Requirement: Masthead states as-of time and block
 
 The page SHALL open with a masthead containing the wordmark `SUBNT`,
 the tagline `A lean read on Bittensor subnets`, and an as-of line.
 
-When an Atlas edition has been published, the as-of line SHALL be
-`as of <time> · block <n>`, where `<time>` is the compose time in UTC
-and `<n>` is the newest recorded chain block from the panel snapshot.
-When that block is missing, the as-of line SHALL name the gap and
-SHALL omit a block number.
+The as-of line SHALL be `Updated <time> · block <n>`, where `<time>` and
+`<n>` are the compose time and block recorded in the published data
+files. In the document `<time>` is the UTC compose time in a `<time>`
+element. A presentation script MAY rewrite it as the edition's age in
+words (`3 hours and 11 minutes ago`) from the reader's clock, with the
+compose time in the reader's timezone as its tooltip. When the block is missing from the data, the as-of line SHALL
+name the gap and SHALL omit a block number. When no data files have
+been published, the page SHALL state that it awaits the first Atlas
+publish and SHALL NOT invent a time or block.
 
-Before any Atlas edition, the as-of line SHALL state that the page
-awaits the first Atlas publish and SHALL NOT invent a time or block.
+#### Scenario: Published data with a block
 
-#### Scenario: Published edition with a block
-
-- **WHEN** Atlas has published and a panel snapshot block exists
-- **THEN** the masthead shows `as of` a UTC timestamp and `block`
+- **WHEN** the data files carry a compose time and block
+- **THEN** the masthead shows `Updated` that UTC time and `block`
   followed by that number
+- **AND** with scripting on, the time reads as the edition's age
 
-#### Scenario: Published edition with no block
+#### Scenario: Published data with no block
 
-- **WHEN** Atlas has published and no panel snapshot block is recorded
-- **THEN** the as-of line names the missing block and does not show a
-  fabricated number
+- **WHEN** the data files carry no block
+- **THEN** the as-of line names the missing block and shows no number
 
-#### Scenario: Pre-Atlas shell
+#### Scenario: No data published yet
 
-- **WHEN** Atlas has not published
-- **THEN** the as-of line states that the page awaits the first Atlas
-  publish
+- **WHEN** the build finds no data files
+- **THEN** the page builds, every section names its missing input, and
+  the as-of line states that the page awaits the first Atlas publish
 
 ### Requirement: Fixed section order
 
@@ -89,27 +93,34 @@ each as a landmark with a stable `id`:
 4. Attention (`#attention`)
 5. Code / narrative (`#code-narrative`)
 
-Every section SHALL be present on every edition, including the
-pre-Atlas shell.
+Every section SHALL be present on every build, including a build with
+no data. A section MAY be reordered or added only by a change to this
+spec.
 
-#### Scenario: Order on the pre-Atlas shell
+#### Scenario: Order holds with data
 
-- **WHEN** the current `index.html` is served
-- **THEN** the five section landmarks exist in that order
+- **WHEN** the page builds from published data
+- **THEN** the five landmarks exist in that order
 
-#### Scenario: Order on an Atlas edition
+#### Scenario: Order holds without data
 
-- **WHEN** Atlas overwrites `index.html` with a composed edition
-- **THEN** the same five landmarks remain in the same order
+- **WHEN** the page builds with no data files
+- **THEN** the five landmarks exist in that order, each naming its gap
 
 ### Requirement: Network section content
 
 The network section SHALL state, when recorded: the live runtime spec
-and matching release subject; root-settable parameter changes in the
-window; the current bar (theta, rank, above-bar count) and its delta
-versus the previous subnt edition; side-change count in the window;
-TAO/USD, total staked TAO, subnet share of stake, and new accounts,
-each with the vitals date.
+and matching release subject, shortened to the PR number and branch with
+the upstream owner dropped; root-settable parameter changes in the
+window; the current bar as a percentage of demand share, with rank,
+above-bar count and its delta versus the previous subnt edition; and
+TAO/USD, total staked TAO and subnet share of stake, each with the
+vitals date. It SHALL NOT state side changes at the bar or new accounts.
+
+When no subnet moved past a mover threshold, the edition headline SHALL
+state the soft gate: the top N subnets by demand share are favoured and
+emission falls off below the bar. It SHALL NOT say subnets below the bar
+are excluded.
 
 #### Scenario: Vitals carry their date
 
@@ -128,10 +139,12 @@ The movers section SHALL rank alpha-price movers and demand-share
 movers from panel snapshots in the window (since the previous publish,
 or the six hours before compose when there is no previous publish).
 Each mover line SHALL name the netuid, state from and to values, and
-cite the reference blocks. The section SHALL list high dereg-risk
-netuids and contested or takeover-eligible netuids when recorded, and
-SHALL summarise hovering subnets as a count with netuids. When no
-mover crosses its threshold, the section SHALL say so.
+cite the reference blocks. The section SHALL list the five non-immune
+subnets with the lowest recorded prune rank, closest to deregistration
+first, and SHALL name the subnets near the cut (inside the hovering
+band), each with netuid and recorded name. It SHALL NOT list contested
+or takeover-eligible ownership. When no mover crosses its threshold,
+the section SHALL say so.
 
 #### Scenario: Price mover cites both ends
 
@@ -145,8 +158,10 @@ mover crosses its threshold, the section SHALL say so.
 
 ### Requirement: Mining head section content
 
-The mining section SHALL state the board head (netuid and recorded
-name), and the ranked, cut, and observed counts. When a previous
+The mining section SHALL state the subnet with the largest earnable
+pool for a new independent miner (netuid and recorded name), the ranked,
+cut, and observed counts, and a note that hardware cost and hardware
+requirements are not counted. When a previous
 edition exists, it SHALL name netuids that entered or left the top
 ten, or state that the top ten is unchanged. It SHALL NOT state the
 mining budget band, rent, or hardware rung.
@@ -167,9 +182,13 @@ The attention section SHALL select at most ten subnets in the fleet
 board's descending score order and SHALL omit subnets whose attention
 signal is unpaired emission opacity. Each row SHALL state netuid,
 recorded name, and a short public reason derived from the recorded score
-components (`div_signed`, `cold`, `econ_fresh`, `pulse_spike`) when present,
-with category-based fallback phrases. An unrecognised reason SHALL be
-named as a gap.
+components (`div_signed`, `cold`, `econ_fresh`) when present, with
+category-based fallback phrases. An unrecognised reason SHALL be named as
+a gap. A row fresh on the branch pulse alone SHALL be omitted. A row whose
+reason is emission off miners SHALL carry the chain figure for the share
+of miner emission burned through owner UIDs, and only when that figure
+reconciles with chain `MinerBurned` within the mining pass tolerance and
+is at least 1%; otherwise the row SHALL be omitted.
 
 Rows sharing a reason SHALL be grouped. Groups SHALL follow the first
 appearance of each reason in the selected rows and preserve row order
@@ -262,15 +281,20 @@ NOT estimate, interpolate, or carry a prior value forward as current.
 
 ### Requirement: Operator-only facts are absent
 
-The page SHALL NOT include wallet addresses, keys or seed material,
-Telegram identifiers, LAN or Pi addresses, TaoStats quota, exploit
-paths, mining budget band, or atlas/operator health, watermark, or
-next-action lines.
+The page and every file in this repository SHALL NOT include wallet
+addresses, keys or seed material, Telegram identifiers, LAN or Pi
+addresses, TaoStats quota, exploit paths, mining budget band, or
+atlas/operator health, watermark, or next-action lines.
 
-#### Scenario: Off-page strings are missing
+#### Scenario: Off-page strings are missing from the page
 
-- **WHEN** the published `index.html` is inspected
+- **WHEN** the built `index.html` is inspected
 - **THEN** it contains none of those operator-only facts
+
+#### Scenario: Off-page strings are missing from the data
+
+- **WHEN** the data files are inspected
+- **THEN** they contain none of those operator-only facts
 
 ### Requirement: Editions and deltas
 
@@ -301,3 +325,190 @@ A path other than `/` SHALL be served as a not-found page, not as
 - **WHEN** a reader opens a path that is not `/`
 - **THEN** the response is the not-found document and a link back to
   `/`
+
+### Requirement: The page is built from published data files
+
+The page SHALL be generated at build time from data files that Atlas
+writes into `data/`. Each data file SHALL carry a schema version, the
+compose time, and the block. The build SHALL fail when a data file's
+major schema version is not one the page supports, rather than render
+a partial or guessed page. The page SHALL NOT compute a reported figure
+from other figures; every reported figure and every section lead SHALL
+come from the data files as written.
+
+#### Scenario: Supported schema
+
+- **WHEN** every data file carries a supported schema version
+- **THEN** the build succeeds and renders their figures
+
+#### Scenario: Unsupported schema fails the build
+
+- **WHEN** a data file carries an unsupported major schema version
+- **THEN** the build fails and the last deployed page stays live
+
+#### Scenario: No derived figures
+
+- **WHEN** the built page is compared to the data files
+- **THEN** every number on the page appears in a data file
+
+### Requirement: Each section answers one reader question
+
+Each section SHALL declare the reader question it answers and SHALL
+open with a lead sentence that answers it in plain words, followed by
+the figures that support it. The lead SHALL be written by Atlas from
+recorded facts and delivered in the data file. When the section's
+inputs are missing, the lead SHALL name the gap. Figures that do not
+support the section's question SHALL NOT be shown in that section.
+
+| Section | Question |
+|---|---|
+| Network | What changed on the network since the last edition? |
+| Subnet movers | Which subnets moved, and which sit near the cut? |
+| Mining | Where is mining worth a look now? |
+| Attention | Which subnets deserve a closer read, and why? |
+| Code / narrative | Where is code shipping, and what is being adopted? |
+
+#### Scenario: Lead comes first
+
+- **WHEN** a section renders with facts
+- **THEN** its first content is the lead sentence, followed by figures
+
+#### Scenario: Lead names a gap
+
+- **WHEN** a section's inputs are missing
+- **THEN** its lead names the missing input and no figures follow
+
+### Requirement: Detail opens in place
+
+Per-subnet and per-item detail SHALL open in place using native
+disclosure (`<details>`/`<summary>`) and SHALL NOT link to another
+route. Collapsed detail SHALL be present in the delivered document.
+
+#### Scenario: Detail without script
+
+- **WHEN** scripting is off and a reader opens a subnet row
+- **THEN** its detail expands in place and shows its figures
+
+### Requirement: Mobile-first layout
+
+The page SHALL be designed for a narrow screen first and SHALL enhance
+for wider screens. At a 360 px viewport the page SHALL have no
+horizontal page scroll, tables SHALL render as stacked rows or cards,
+and charts SHALL fit the viewport width. A sticky in-page section bar
+MAY link to the five sections.
+
+#### Scenario: Narrow viewport
+
+- **WHEN** the page renders at 360 px wide
+- **THEN** the document width does not exceed the viewport and every
+  figure is readable without zoom
+
+#### Scenario: Wide viewport
+
+- **WHEN** the page renders at 1280 px wide
+- **THEN** the same sections and figures appear, arranged for the
+  wider screen
+
+### Requirement: One design system
+
+Colour, type scale, spacing, radius, and chart style SHALL be defined
+once as design tokens and used by every component. The page SHALL
+provide light and dark themes that follow the device setting. Charts
+SHALL be inline SVG generated at build time from data-file series and
+SHALL NOT introduce a figure the page does not otherwise report, nor
+estimate, interpolate, or smooth a value.
+
+#### Scenario: Theme follows the device
+
+- **WHEN** the device prefers a dark or light colour scheme
+- **THEN** the page renders in the matching theme
+
+#### Scenario: No stray values
+
+- **WHEN** component styles are inspected
+- **THEN** colours and spacing come from the tokens
+
+### Requirement: Performance budget
+
+The built page SHALL meet this budget, enforced by a test on the build
+output:
+
+- `index.html`, with inlined critical CSS: at most 120 KB uncompressed.
+- JavaScript shipped to the browser: at most 15 KB uncompressed in
+  total, and none required to read the page.
+- Typeface: one self-hosted, subset, variable font file of at most
+  60 KB, loaded with `font-display: swap`.
+- No third-party request of any kind.
+
+Motion SHALL be limited to state changes and SHALL be disabled when the
+device requests reduced motion.
+
+#### Scenario: Budget exceeded
+
+- **WHEN** a build output exceeds any budget line
+- **THEN** the contract test fails and names the line exceeded
+
+#### Scenario: Reduced motion
+
+- **WHEN** the device requests reduced motion
+- **THEN** no animation or transition runs
+
+### Requirement: Accessible by default
+
+The page SHALL meet WCAG 2.2 AA for colour contrast in both themes,
+SHALL use one `h1` and ordered headings, SHALL give every chart a text
+equivalent that states the same figures, and SHALL give touch targets
+at least 44 by 44 CSS px.
+
+#### Scenario: Chart has a text equivalent
+
+- **WHEN** a chart renders
+- **THEN** an accessible label or caption states the figures it shows
+
+### Requirement: Sections carry an access level
+
+Every section and every sub-block that can be gated SHALL carry an
+access level of `public` or `subscriber` in the data files. A
+`subscriber` block SHALL render in the same layout as its public form,
+filled with placeholder values that are not recorded facts, visually
+blurred, and labelled `Subscriber section` for assistive technology
+and for readers with styles off. The page SHALL stay one complete view
+for every reader.
+
+Real figures for a `subscriber` block SHALL NOT appear in the data
+files, the built page, or any commit to this repository. v2 SHALL
+publish every block as `public`.
+
+#### Scenario: Subscriber block for a public reader
+
+- **WHEN** a block is marked `subscriber`
+- **THEN** the page shows its placeholder, blurred and labelled, and
+  the document contains no recorded figure for it
+
+#### Scenario: Leak check
+
+- **WHEN** a data file carries a recorded figure inside a block marked
+  `subscriber`
+- **THEN** the contract test fails and the build does not deploy
+
+#### Scenario: v2 ships public
+
+- **WHEN** v2 is first deployed
+- **THEN** every block is `public` and no placeholder renders
+
+### Requirement: Build and deploy are static
+
+Cloudflare Workers static hosting SHALL build the page with the Astro
+build command on push to `main` and deploy only the static output. No
+server-side code SHALL run to serve the page. A failed build SHALL
+leave the last deployed page live.
+
+#### Scenario: Data push triggers a build
+
+- **WHEN** Atlas pushes changed data files to `main`
+- **THEN** Cloudflare builds and deploys the static page
+
+#### Scenario: Failed build
+
+- **WHEN** the build or contract test fails
+- **THEN** nothing new deploys and the previous page stays live
