@@ -13,7 +13,7 @@ export const SECTIONS = [
   { id: "network", file: "network", title: "Network",
     question: "What changed on the network since the last edition?" },
   { id: "movers", file: "movers", title: "Subnet movers",
-    question: "Which subnets moved, and which crossed the bar?" },
+    question: "Which subnets moved, and which sit near the cut?" },
   { id: "mining", file: "mining", title: "Mining",
     question: "Where is mining worth a look now?" },
   { id: "attention", file: "attention", title: "Attention",
