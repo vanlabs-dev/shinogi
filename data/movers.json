@@ -1,7 +1,7 @@
 {
  "schema": "subnt/1.0",
  "kind": "section",
- "composed_at": "2026-09-26T00:21:33Z",
+ "composed_at": "2026-09-26T00:57:02Z",
  "block": 9148191,
  "section": "movers",
  "question": "Which subnets moved, and which sit near the cut?",

@@ -1,11 +1,11 @@
 {
  "schema": "subnt/1.0",
  "kind": "section",
- "composed_at": "2026-09-26T00:21:33Z",
+ "composed_at": "2026-09-26T00:57:02Z",
  "block": 9148191,
  "section": "code-narrative",
  "question": "Where is code shipping, and what is being adopted?",
- "lead": "50 of 101 tracked subnets pushed code in the last seven days.",
+ "lead": "51 of 101 tracked subnets pushed code in the last seven days.",
  "access": "public",
  "blocks": [
   {
@@ -16,15 +16,18 @@
     {
      "id": "pushed",
      "label": "Pushed in 7 days",
-     "text": "50 / 101",
-     "value": 50,
+     "text": "51 / 101",
+     "value": 51,
      "headline": true,
      "freshness": "tracked subnets",
-     "delta": null
+     "delta": {
+      "text": "+2.0% since last publish",
+      "direction": "up"
+     }
     }
    ],
    "notes": [
-    "0 material incentive-code changes and 0 of middling significance in the window."
+    "0 material incentive-code changes and 1 of middling significance in the window."
    ],
    "gaps": []
   },
