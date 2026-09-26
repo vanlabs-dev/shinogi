@@ -53,7 +53,7 @@ const tagsFor = (n) => flags.get(n) ?? [];
         {block.groups.map((g) => (
           <div class="group">
             <h3 class="gl">{g.label}</h3>
-            <ol class="rows">{g.rows.map((r, i) => <Row row={{ ...r, summary: r.name ? "" : r.summary }} index={i} flags={tagsFor(r.netuid)} />)}</ol>
+            <ol class="rows">{g.rows.map((r, i) => <Row row={{ ...r, summary: r.name && g.label.startsWith(`${r.summary}:`) ? "" : r.summary }} index={i} flags={tagsFor(r.netuid)} />)}</ol>
           </div>
         ))}
       </div>
